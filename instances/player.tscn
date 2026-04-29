@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://cqv0t8p366o2g"]
+
+[ext_resource type="Script" uid="uid://bs4qjad2dcag6" path="res://instances/player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://drsunlf82t1a4" path="res://incrediball.png" id="2_i3pqv"]
+[ext_resource type="AudioStream" uid="uid://vslwkxcfgmyj" path="res://assets/Sounds/sfx_bump.ogg" id="3_i3pqv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
+radius = 35.0
+
+[node name="player" type="Area2D" unique_id=939525413]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_onrkg")
+side_movement_responsivness = 5.0
+
+[node name="coll" type="CollisionShape2D" parent="." unique_id=1808950444]
+position = Vector2(0, -35)
+shape = SubResource("CircleShape2D_onrkg")
+
+[node name="sprite" type="Sprite2D" parent="." unique_id=1837417507]
+unique_name_in_owner = true
+position = Vector2(0, -35)
+texture = ExtResource("2_i3pqv")
+
+[node name="ray_floor" type="RayCast2D" parent="." unique_id=149582354]
+unique_name_in_owner = true
+position = Vector2(0, -13)
+target_position = Vector2(0, 15)
+collision_mask = 13
+collide_with_areas = true
+
+[node name="sfx_jump" type="AudioStreamPlayer" parent="." unique_id=1736701819]
+unique_name_in_owner = true
+stream = ExtResource("3_i3pqv")
+mix_target = 2
+bus = &"Sfx"

@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bnm2aowmnwtdk"]
+
+[ext_resource type="Script" uid="uid://vm5plcunskkr" path="res://instances/plates/spring.gd" id="1_boyml"]
+[ext_resource type="Texture2D" uid="uid://cq8me17b7rtlh" path="res://assets/Tiles/spring.svg" id="1_ka4py"]
+[ext_resource type="AudioStream" uid="uid://cun4l7246ygc2" path="res://assets/Sounds/sfx_jump-high.ogg" id="3_hpppm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_boyml"]
+size = Vector2(48, 8)
+
+[node name="spring" type="StaticBody2D" unique_id=673783867]
+collision_layer = 8
+script = ExtResource("1_boyml")
+
+[node name="coll" type="CollisionShape2D" parent="." unique_id=1196780976]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_boyml")
+
+[node name="sprite" type="Sprite2D" parent="." unique_id=283699839]
+unique_name_in_owner = true
+position = Vector2(0, -8)
+scale = Vector2(0.5, 0.25)
+texture = ExtResource("1_ka4py")
+
+[node name="sfx_boing" type="AudioStreamPlayer" parent="." unique_id=465565439]
+unique_name_in_owner = true
+stream = ExtResource("3_hpppm")
+mix_target = 2
+bus = &"Sfx"

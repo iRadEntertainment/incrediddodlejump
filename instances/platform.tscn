@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://bnnasjoucdkug"]
+
+[ext_resource type="Script" uid="uid://c5k6lf7mxfqt7" path="res://instances/platform.gd" id="1_ph1ng"]
+[ext_resource type="Texture2D" uid="uid://dw6xsw3rowijh" path="res://assets/Tiles/terrain_grass_horizontal_left.svg" id="1_ry5bi"]
+[ext_resource type="Texture2D" uid="uid://bmc225gwuuis" path="res://assets/Tiles/terrain_grass_horizontal_middle.svg" id="2_ph1ng"]
+[ext_resource type="Texture2D" uid="uid://ctg247s8uptrq" path="res://assets/Tiles/terrain_grass_horizontal_overhang_left.svg" id="3_7u0im"]
+[ext_resource type="Texture2D" uid="uid://bhq48jbyimlek" path="res://assets/Tiles/terrain_grass_horizontal_overhang_right.svg" id="4_x8osn"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_iotsf"]
+a = Vector2(-64, 0)
+b = Vector2(64, 0)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lc2xo"]
+texture = ExtResource("1_ry5bi")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_215e1"]
+texture = ExtResource("2_ph1ng")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7sc4i"]
+texture = ExtResource("3_7u0im")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_80cx4"]
+texture = ExtResource("4_x8osn")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_e8heu"]
+tile_size = Vector2i(64, 64)
+sources/5 = SubResource("TileSetAtlasSource_lc2xo")
+sources/6 = SubResource("TileSetAtlasSource_215e1")
+sources/7 = SubResource("TileSetAtlasSource_7sc4i")
+sources/8 = SubResource("TileSetAtlasSource_80cx4")
+
+[node name="platform" type="Node2D" unique_id=170080328]
+script = ExtResource("1_ph1ng")
+
+[node name="static_coll" type="StaticBody2D" parent="." unique_id=593339047]
+collision_layer = 4
+collision_mask = 0
+
+[node name="coll" type="CollisionShape2D" parent="static_coll" unique_id=382917580]
+unique_name_in_owner = true
+shape = SubResource("SegmentShape2D_iotsf")
+one_way_collision = true
+
+[node name="tiles" type="TileMapLayer" parent="." unique_id=1846916788]
+scale = Vector2(0.5, 0.5)
+tile_map_data = PackedByteArray(0, 0, 255, 255, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 254, 255, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0)
+tile_set = SubResource("TileSet_e8heu")
+occlusion_enabled = false
+collision_enabled = false
+navigation_enabled = false

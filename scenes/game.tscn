@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://dqqbqhmdw2rjm"]
+
+[ext_resource type="Script" uid="uid://bo8hqhvdy1mvy" path="res://scenes/game.gd" id="1_80nbo"]
+[ext_resource type="PackedScene" uid="uid://cqv0t8p366o2g" path="res://instances/player.tscn" id="2_e2o6t"]
+[ext_resource type="Texture2D" uid="uid://c6nabd0ww2qk1" path="res://assets/Backgrounds/background_clouds.svg" id="2_fc0e3"]
+[ext_resource type="AudioStream" uid="uid://cun4l7246ygc2" path="res://assets/Sounds/sfx_jump-high.ogg" id="2_hve3p"]
+[ext_resource type="Texture2D" uid="uid://bmc225gwuuis" path="res://assets/Tiles/terrain_grass_horizontal_middle.svg" id="3_7jktm"]
+[ext_resource type="PackedScene" uid="uid://bhc6vnvhndxsa" path="res://instances/cam.tscn" id="3_feb5d"]
+[ext_resource type="AudioStream" uid="uid://oxx4og21cn2k" path="res://assets/Sounds/sfx_disappear.ogg" id="3_mfdv2"]
+[ext_resource type="PackedScene" uid="uid://bnnasjoucdkug" path="res://instances/platform.tscn" id="5_eow3j"]
+[ext_resource type="Script" uid="uid://dmor6piqkclm5" path="res://scripts/platform_mng.gd" id="5_j5wjh"]
+[ext_resource type="PackedScene" uid="uid://dwsc766o7sdj0" path="res://scenes/gui.tscn" id="6_ryrav"]
+
+[sub_resource type="Gradient" id="Gradient_7jktm"]
+offsets = PackedFloat32Array(0.56415564, 0.8091887, 1)
+colors = PackedColorArray(0.7647059, 0.8901961, 1, 1, 0.65314656, 0.9607217, 0.99999994, 1, 0.65314656, 0.9607217, 0.99999994, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ryrav"]
+gradient = SubResource("Gradient_7jktm")
+width = 2
+height = 256
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7jktm"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fc0e3"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ryrav"]
+normal = Vector2(-1, 0)
+
+[node name="game" type="Node2D" unique_id=717966906]
+script = ExtResource("1_80nbo")
+
+[node name="sfx" type="Node" parent="." unique_id=461834367]
+
+[node name="sfx_start" type="AudioStreamPlayer" parent="sfx" unique_id=2128382834]
+unique_name_in_owner = true
+stream = ExtResource("2_hve3p")
+mix_target = 2
+bus = &"UI"
+
+[node name="sfx_game_over" type="AudioStreamPlayer" parent="sfx" unique_id=1196523111]
+unique_name_in_owner = true
+stream = ExtResource("3_mfdv2")
+mix_target = 2
+bus = &"UI"
+
+[node name="bg_fix" type="CanvasLayer" parent="." unique_id=818281333]
+layer = -1
+
+[node name="bg" type="ParallaxBackground" parent="." unique_id=1610392785]
+
+[node name="bg_sky" type="TextureRect" parent="bg" unique_id=510184892]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_ryrav")
+
+[node name="clouds_far" type="ParallaxLayer" parent="bg" unique_id=1539271708]
+motion_scale = Vector2(0.01, 0.01)
+
+[node name="BackgroundClouds" type="TextureRect" parent="bg/clouds_far" unique_id=1308399823]
+offset_left = -40.0
+offset_top = 624.0
+offset_right = 576.0
+offset_bottom = 1168.0
+texture = ExtResource("2_fc0e3")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="cam" parent="." unique_id=1144141747 instance=ExtResource("3_feb5d")]
+position = Vector2(0, -253)
+limit_bottom = 60
+
+[node name="ground" type="StaticBody2D" parent="." unique_id=1396525339]
+
+[node name="sprite" type="TextureRect" parent="ground" unique_id=1454876531]
+offset_left = -272.0
+offset_top = -4.0
+offset_right = 272.0
+offset_bottom = 60.0
+texture = ExtResource("3_7jktm")
+stretch_mode = 1
+
+[node name="coll_bot" type="CollisionShape2D" parent="ground" unique_id=230240538]
+unique_name_in_owner = true
+shape = SubResource("WorldBoundaryShape2D_7jktm")
+
+[node name="coll_left" type="CollisionShape2D" parent="ground" unique_id=1892060406]
+unique_name_in_owner = true
+shape = SubResource("WorldBoundaryShape2D_fc0e3")
+
+[node name="coll_right" type="CollisionShape2D" parent="ground" unique_id=1774918232]
+unique_name_in_owner = true
+shape = SubResource("WorldBoundaryShape2D_ryrav")
+
+[node name="platforms" type="Node2D" parent="." unique_id=1827712176]
+script = ExtResource("5_j5wjh")
+
+[node name="platform" parent="platforms" unique_id=79090251 instance=ExtResource("5_eow3j")]
+position = Vector2(-160, -256)
+
+[node name="platform2" parent="platforms" unique_id=517514194 instance=ExtResource("5_eow3j")]
+position = Vector2(168, -448)
+
+[node name="platform3" parent="platforms" unique_id=430122198 instance=ExtResource("5_eow3j")]
+position = Vector2(-192, -480)
+
+[node name="platform4" parent="platforms" unique_id=1660105414 instance=ExtResource("5_eow3j")]
+position = Vector2(216, -824)
+
+[node name="player" parent="." unique_id=129352850 instance=ExtResource("2_e2o6t")]
+position = Vector2(86, -116)
+collision_mask = 5
+
+[node name="GUI" parent="." unique_id=1756479393 instance=ExtResource("6_ryrav")]

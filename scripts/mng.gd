@@ -3,10 +3,14 @@ extends Node
 
 
 const PLATFORM_GRID_SIZE: Vector2i = Vector2i(64, 64)
+
 const MIN_DIFFICULTY_SCORE: int = 2000
 const MAX_DIFFICULTY_SCORE: int = 40000
+
 const MIN_ENEMY_SPAWN_HEIGHT: int = 1200
 const MAX_ENEMY_SPAWN_HEIGHT: int = 5000
+
+const SCORE_COST_SHOOT: int = 100
 
 
 #region Self-registering instances

@@ -18,13 +18,17 @@ var dir: Vector2:
 		dir = value
 		sprite.flip_h = dir.x > 0
 
-var can_die: bool
+var points: int
+
 var speed: float
 var velocity: Vector2
+
 var frames: Array
 var frames_duration: float = 0.2
 var frames_interval: float
 var current_frame_idx: int
+
+var can_die: bool
 var _is_dead: bool
 
 
@@ -41,6 +45,7 @@ func _setup() -> void:
 func die() -> void:
 	if not can_die:
 		return
+	Mng.game.score_gained += points
 	_is_dead = true
 	coll.set_deferred(&"disabled", true)
 	Mng.game.enemies.deregister_enemy(self)

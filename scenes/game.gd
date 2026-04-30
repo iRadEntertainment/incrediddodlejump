@@ -33,22 +33,34 @@ var max_height: float = 0.0:
 	set(value):
 		if max_height < value:
 			max_height = value
-			score = floori(max_height)
+			score_raw = floori(max_height)
 			max_height_updated.emit(max_height)
 
-var score: int:
+var score_raw: int:
 	set(value):
-		score = value
-		var difficulty_ratio: float = inverse_lerp(Mng.MIN_DIFFICULTY_SCORE, Mng.MAX_DIFFICULTY_SCORE, score)
+		score_raw = value
+		var difficulty_ratio: float = inverse_lerp(Mng.MIN_DIFFICULTY_SCORE, Mng.MAX_DIFFICULTY_SCORE, score_raw)
 		current_difficulty = clampf(difficulty_ratio, 0.0, 1.0)
 		score_updated.emit(score)
+var score_gained: int:
+	set(value):
+		score_gained = value
+		score_updated.emit(score)
+var score_spent: int:
+	set(value):
+		score_spent = value
+		score_updated.emit(score)
+var score: int:
+	get: return max(score_raw + score_gained - score_spent, 0)
 
-var current_difficulty: float # between 0 and 1 depending on the score
+
+
+var current_difficulty: float # between 0 and 1 depending on the score_raw
 
 
 signal status_updated(status: Status)
 signal max_height_updated(max_height: float)
-signal score_updated(score: int)
+signal score_updated(score_raw: int)
 
 
 func _init() -> void:

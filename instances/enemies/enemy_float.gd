@@ -15,6 +15,7 @@ func _setup() -> void:
 		Type.FLY:
 			can_die = true
 			speed = 120.0
+			points = 500
 			sfx_spawn.stream = load("uid://cout3m0rgorst")
 		Type.SPIKES:
 			can_die = false

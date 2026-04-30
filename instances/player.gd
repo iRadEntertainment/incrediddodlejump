@@ -101,10 +101,15 @@ func _jump(force: float, with_sfx: bool = true) -> void:
 
 
 func _shoot() -> void:
+	if Mng.game.score < Mng.SCORE_COST_SHOOT:
+		return
+	Mng.game.score_spent += Mng.SCORE_COST_SHOOT
+	
 	var proj: Projectile = preload("uid://1pytnpnd7c2h").instantiate()
 	proj.position = shoot_marker.global_position
 	proj.dir = shoot_marker.get_local_mouse_position().normalized()
 	Mng.game.projectiles.add_child(proj)
+	
 	sfx_shoot.play()
 	_close_mouth()
 

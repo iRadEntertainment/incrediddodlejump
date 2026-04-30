@@ -55,6 +55,7 @@ func generate_platforms() -> void:
 		var is_moving: bool = Mng.rng.randf() > 0.8
 		var is_breakable: bool = true and can_skip
 		var is_disappear: bool = false
+		var is_long: bool = false
 		var has_spring: bool = Mng.rng.randf() > 0.9 and not is_breakable
 		var has_boost: bool = false and not is_breakable
 		
@@ -71,6 +72,7 @@ func generate_platforms() -> void:
 		platform.is_moving = is_moving
 		platform.is_breakable = is_breakable
 		platform.is_disappear = is_disappear
+		platform.is_long = is_long
 		platform.has_spring = has_spring
 		platform.has_boost = has_boost
 		add_child(platform)

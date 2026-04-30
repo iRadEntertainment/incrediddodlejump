@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bnm2aowmnwtdk"]
 
 [ext_resource type="Script" uid="uid://vm5plcunskkr" path="res://instances/plates/spring.gd" id="1_boyml"]
-[ext_resource type="Texture2D" uid="uid://byntnwsod3ven" path="res://assets/spritesheet-tiles-default.png" id="2_f76ew"]
+[ext_resource type="Texture2D" uid="uid://byntnwsod3ven" path="res://assets/kenney_tiles.png" id="2_f76ew"]
 [ext_resource type="AudioStream" uid="uid://cun4l7246ygc2" path="res://assets/Sounds/sfx_jump-high.ogg" id="3_hpppm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_boyml"]

@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://oxx4og21cn2k" path="res://assets/Sounds/sfx_disappear.ogg" id="3_mfdv2"]
 [ext_resource type="Script" uid="uid://dmor6piqkclm5" path="res://scripts/platform_mng.gd" id="5_j5wjh"]
 [ext_resource type="Texture2D" uid="uid://ci41og0tjmbv5" path="res://assets/Backgrounds/background_color_trees.svg" id="5_vtaks"]
-[ext_resource type="TileSet" uid="uid://kt3e3wyknlvo" path="res://assets/tile_set.tres" id="6_0tnpc"]
+[ext_resource type="TileSet" uid="uid://kt3e3wyknlvo" path="res://assets/tile_set_tiles.tres" id="6_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://dwsc766o7sdj0" path="res://scenes/gui.tscn" id="6_ryrav"]
 
 [sub_resource type="Gradient" id="Gradient_7jktm"]

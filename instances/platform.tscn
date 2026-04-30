@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bnnasjoucdkug"]
 
 [ext_resource type="Script" uid="uid://c5k6lf7mxfqt7" path="res://instances/platform.gd" id="1_ph1ng"]
-[ext_resource type="TileSet" uid="uid://kt3e3wyknlvo" path="res://assets/tile_set.tres" id="2_jmi4v"]
+[ext_resource type="TileSet" uid="uid://kt3e3wyknlvo" path="res://assets/tile_set_tiles.tres" id="2_jmi4v"]
 [ext_resource type="AudioStream" uid="uid://cqi7lhttb3h1m" path="res://assets/Sounds/sfx_kevinkace_barrel_break_4.wav" id="3_jmi4v"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_iotsf"]

@@ -8,6 +8,7 @@ enum Type {
 
 @onready var sprite: Sprite2D = %sprite
 @onready var coll: CollisionShape2D = %coll
+@onready var sfx_spawn: AudioStreamPlayer = %sfx_spawn
 
 var type: Type
 var dir: Vector2:
@@ -17,6 +18,7 @@ var dir: Vector2:
 		dir = value
 		sprite.flip_h = dir.x > 0
 
+var can_die: bool
 var speed: float
 var velocity: Vector2
 var frames: Array
@@ -29,6 +31,7 @@ var _is_dead: bool
 func _ready() -> void:
 	Mng.game.enemies.register_enemy(self)
 	_setup()
+	sfx_spawn.play()
 
 
 func _setup() -> void:
@@ -36,6 +39,8 @@ func _setup() -> void:
 
 
 func die() -> void:
+	if not can_die:
+		return
 	_is_dead = true
 	coll.set_deferred(&"disabled", true)
 	Mng.game.enemies.deregister_enemy(self)

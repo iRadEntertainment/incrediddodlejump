@@ -15,5 +15,6 @@ func _on_notif_screen_exited() -> void:
 
 
 func _on_area_entered(enemy: Enemy) -> void:
-	enemy.die()
+	if enemy.can_die:
+		enemy.die()
 	queue_free()

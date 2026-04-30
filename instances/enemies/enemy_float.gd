@@ -13,8 +13,10 @@ func _setup() -> void:
 	frames = FRAMES[type]
 	match type:
 		Type.FLY:
+			can_die = true
 			speed = 120.0
 		Type.SPIKES:
+			can_die = false
 			speed = 60.0
 
 

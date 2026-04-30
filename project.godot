@@ -22,6 +22,7 @@ buses/default_bus_layout="uid://bet7minvtavd5"
 [autoload]
 
 Mng="*uid://b2rhs8l4gl7b8"
+Aud="*uid://bia5qh6t1k3w6"
 
 [display]
 

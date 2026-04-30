@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bia5qh6t1k3w6"]
+
+[ext_resource type="Script" uid="uid://c4hb0vxp030gn" path="res://scripts/aud.gd" id="1_bs1vv"]
+[ext_resource type="AudioStream" uid="uid://7b76yqpfm6up" path="res://assets/Sounds/mus_mondamusic-retro-arcade-game-music-512837.mp3" id="2_rn8fe"]
+
+[node name="Aud" type="Node" unique_id=1459225831]
+script = ExtResource("1_bs1vv")
+
+[node name="music" type="AudioStreamPlayer" parent="." unique_id=1242877852]
+stream = ExtResource("2_rn8fe")
+bus = &"Music"
+parameters/looping = true

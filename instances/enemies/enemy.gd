@@ -42,10 +42,10 @@ func die() -> void:
 	queue_free()
 
 
-func _on_body_entered(body: Node2D) -> void:
-	if body is Player:
-		body.die(self)
-
-
 func _on_notif_screen_exited() -> void:
 	queue_free()
+
+
+func _on_area_entered(area: Area2D) -> void:
+	if area is Player:
+		area.die(self)

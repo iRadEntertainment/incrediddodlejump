@@ -25,5 +25,6 @@ shape = SubResource("CircleShape2D_na4cm")
 [node name="notif" type="VisibleOnScreenNotifier2D" parent="." unique_id=2120322538]
 rect = Rect2(-105, -105, 210, 210)
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="notif" to="." method="_on_notif_screen_exited"]

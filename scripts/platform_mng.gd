@@ -39,22 +39,40 @@ func generate_platforms() -> void:
 		#printerr("No noise assigned to the platform manager.")
 		#return
 	
+	var spawn_treshold_difficulty: float = 0.5
+	
 	for line: int in _lines_to_generate:
-		var spawn_platform: bool = Mng.rng.randf() < 0.5
-		spawn_platform = spawn_platform or _skipped_platform_count >= max_skippable_platforms
+		# difficulty spawn
+		var rng_skip: bool = Mng.rng.randf() > spawn_treshold_difficulty
+		var can_skip: bool = _skipped_platform_count < max_skippable_platforms
+		var skip_platform: bool = rng_skip and can_skip
 		
-		if not spawn_platform:
+		if skip_platform:
 			_skipped_platform_count += 1
 			continue
 		
-		_skipped_platform_count = 0
+		# difficulty modifiers
+		var is_moving: bool = Mng.rng.randf() > 0.8
+		var is_breakable: bool = true and can_skip
+		var is_disappear: bool = false
+		var has_spring: bool = Mng.rng.randf() > 0.9 and not is_breakable
+		var has_boost: bool = false and not is_breakable
+		
+		if is_breakable:
+			_skipped_platform_count += 1
+		else:
+			_skipped_platform_count = 0
+		
 		
 		var line_height: float = _generated_height + line * Mng.PLATFORM_GRID_SIZE.y
 		var platform: Platform = load("uid://bnnasjoucdkug").instantiate()
 		platform.position.y = -line_height
 		platform.position.x = (Mng.rng.randf() * 2.0 - 1.0) * Mng.viewport_half_size.x
-		platform.is_moving = Mng.rng.randf() > 0.8
-		platform.has_spring = Mng.rng.randf() > 0.9
+		platform.is_moving = is_moving
+		platform.is_breakable = is_breakable
+		platform.is_disappear = is_disappear
+		platform.has_spring = has_spring
+		platform.has_boost = has_boost
 		add_child(platform)
 	
 	_generated_height = _gen_target_height

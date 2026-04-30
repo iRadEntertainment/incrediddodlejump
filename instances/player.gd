@@ -40,6 +40,11 @@ func _physics_process(delta: float) -> void:
 		if collider is Spring:
 			collider.activate()
 			velocity.y = -collider.jump_force
+		elif collider is Platform:
+			collider.activate()
+			if not collider.is_breakable:
+				velocity.y = -jump_force
+				sfx_jump.play()
 		else:
 			velocity.y = -jump_force
 			sfx_jump.play()

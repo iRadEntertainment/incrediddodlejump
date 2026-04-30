@@ -8,6 +8,10 @@ extends Node2D
 @onready var sfx_start: AudioStreamPlayer = %sfx_start
 @onready var sfx_game_over: AudioStreamPlayer = %sfx_game_over
 
+@onready var enemies: Node2D = %enemies
+@onready var projectiles: Node2D = %projectiles
+
+
 var grace_deadzone_height = 256.0 #px
 
 enum Status { INIT, RUNNING, GAME_OVER }

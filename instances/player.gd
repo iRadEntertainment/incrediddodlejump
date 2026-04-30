@@ -7,6 +7,8 @@ extends Area2D
 
 @onready var sprite: Sprite2D = %sprite
 @onready var mouth: Sprite2D = %mouth
+@onready var shoot_marker: Marker2D = %shoot_marker
+
 @onready var marker_eye_l: Marker2D = %marker_eye_l
 @onready var marker_eye_r: Marker2D = %marker_eye_r
 @onready var eye_l: Sprite2D = %eye_l
@@ -14,7 +16,7 @@ extends Area2D
 
 @onready var ray_floor: RayCast2D = %ray_floor
 @onready var sfx_jump: AudioStreamPlayer = %sfx_jump
-
+@onready var sfx_shoot: AudioStreamPlayer = %sfx_shoot
 
 @onready var _marker_eye_l_init_pos: Vector2 = marker_eye_l.position
 @onready var _marker_eye_r_init_pos: Vector2 = marker_eye_r.position
@@ -22,6 +24,7 @@ extends Area2D
 
 var velocity: Vector2
 var size_x: float
+
 
 
 func _init() -> void:
@@ -33,6 +36,11 @@ func _ready() -> void:
 	set_process(Mng.game.status == Game.Status.RUNNING)
 	set_physics_process(Mng.game.status == Game.Status.RUNNING)
 	Mng.game.status_updated.connect(_on_game_status_updated)
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed(&"shoot"):
+		_shoot()
 
 
 func _process(delta: float) -> void:
@@ -81,12 +89,27 @@ func _jump(force: float, with_sfx: bool = true) -> void:
 	if with_sfx:
 		sfx_jump.play()
 	velocity.y = -force
-	
+	_squish()
+	_close_mouth()
+
+
+func _shoot() -> void:
+	var proj: Projectile = preload("uid://1pytnpnd7c2h").instantiate()
+	proj.position = shoot_marker.global_position
+	proj.dir = shoot_marker.get_local_mouse_position().normalized()
+	Mng.game.projectiles.add_child(proj)
+	sfx_shoot.play()
+	_close_mouth()
+
+
+func _squish() -> void:
 	var tw_squish: Tween = create_tween()
 	tw_squish.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	tw_squish.tween_property(sprite, ^"scale:y", 0.8, 0.4)
 	tw_squish.tween_property(sprite, ^"scale:y", 1.0, 0.4).set_trans(Tween.TRANS_ELASTIC)
-	
+
+
+func _close_mouth() -> void:
 	mouth.texture = load("res://assets/Characters/incrediball_mouth_closed.png")
 	await get_tree().create_timer(0.4).timeout
 	mouth.texture = load("res://assets/Characters/incrediball_mouth_open.png")

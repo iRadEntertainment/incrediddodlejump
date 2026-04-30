@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" uid="uid://bs4qjad2dcag6" path="res://instances/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://1hn41h3a54w" path="res://assets/Characters/incrediball_base.png" id="2_5a4mc"]
+[ext_resource type="Texture2D" uid="uid://bi6tlba1unl31" path="res://assets/Characters/incrediball_mouth_closed.png" id="3_5a4mc"]
 [ext_resource type="AudioStream" uid="uid://vslwkxcfgmyj" path="res://assets/Sounds/sfx_bump.ogg" id="3_i3pqv"]
-[ext_resource type="Texture2D" uid="uid://8x6mw034lgsp" path="res://assets/Characters/incrediball_mouth_open.png" id="3_kipg0"]
 [ext_resource type="Texture2D" uid="uid://d3yr3cd7bk3dp" path="res://assets/Characters/incrediball_eye.png" id="4_cns3y"]
+[ext_resource type="AudioStream" uid="uid://bb0amrrd72tqw" path="res://assets/Sounds/sfx_hurt.ogg" id="6_kipg0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
 radius = 35.0
@@ -27,7 +28,11 @@ texture = ExtResource("2_5a4mc")
 [node name="mouth" type="Sprite2D" parent="sprite" unique_id=547955827]
 unique_name_in_owner = true
 position = Vector2(11, 19)
-texture = ExtResource("3_kipg0")
+texture = ExtResource("3_5a4mc")
+
+[node name="shoot_marker" type="Marker2D" parent="sprite/mouth" unique_id=931939503]
+unique_name_in_owner = true
+position = Vector2(2, 2)
 
 [node name="marker_eye_l" type="Marker2D" parent="sprite" unique_id=1561570984]
 unique_name_in_owner = true
@@ -55,5 +60,11 @@ collide_with_areas = true
 [node name="sfx_jump" type="AudioStreamPlayer" parent="." unique_id=1736701819]
 unique_name_in_owner = true
 stream = ExtResource("3_i3pqv")
+mix_target = 2
+bus = &"Sfx"
+
+[node name="sfx_shoot" type="AudioStreamPlayer" parent="." unique_id=830006075]
+unique_name_in_owner = true
+stream = ExtResource("6_kipg0")
 mix_target = 2
 bus = &"Sfx"

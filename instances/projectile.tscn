@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://1pytnpnd7c2h"]
+
+[ext_resource type="Script" uid="uid://dt43hte3lx180" path="res://instances/projectile.gd" id="1_seckb"]
+[ext_resource type="Texture2D" uid="uid://byntnwsod3ven" path="res://assets/kenney_tiles.png" id="2_bnk0c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y8l58"]
+radius = 18.027756
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5pch"]
+atlas = ExtResource("2_bnk0c")
+region = Rect2(715, 130, 64, 64)
+
+[node name="projectile" type="Area2D" unique_id=1150948596]
+collision_layer = 16
+collision_mask = 32
+script = ExtResource("1_seckb")
+
+[node name="coll" type="CollisionShape2D" parent="." unique_id=1518235440]
+shape = SubResource("CircleShape2D_y8l58")
+
+[node name="sprite" type="Sprite2D" parent="." unique_id=1274947431]
+texture = SubResource("AtlasTexture_r5pch")
+
+[node name="notif" type="VisibleOnScreenNotifier2D" parent="." unique_id=1962108436]
+visible = false
+rect = Rect2(-41, -41, 82, 82)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="notif" to="." method="_on_notif_screen_exited"]

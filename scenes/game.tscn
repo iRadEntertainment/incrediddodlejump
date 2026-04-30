@@ -108,8 +108,17 @@ shape = SubResource("WorldBoundaryShape2D_ryrav")
 
 [node name="platforms" type="Node2D" parent="." unique_id=1827712176]
 script = ExtResource("5_j5wjh")
+metadata/_edit_lock_ = true
+
+[node name="enemies" type="Node2D" parent="." unique_id=218805999]
+unique_name_in_owner = true
+metadata/_edit_lock_ = true
 
 [node name="player" parent="." unique_id=129352850 instance=ExtResource("2_e2o6t")]
 collision_mask = 5
+
+[node name="projectiles" type="Node2D" parent="." unique_id=671978338]
+unique_name_in_owner = true
+metadata/_edit_lock_ = true
 
 [node name="GUI" parent="." unique_id=1756479393 instance=ExtResource("6_ryrav")]

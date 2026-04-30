@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dcp5wrcuq1b1c"]
+
+[ext_resource type="PackedScene" uid="uid://c7xbkxqaxgyyu" path="res://instances/enemies/enemy__abstract.tscn" id="1_pjw8f"]
+[ext_resource type="Script" uid="uid://dyjqau4y4kyc5" path="res://instances/enemies/enemy_float.gd" id="2_na4cm"]
+
+[node name="enemy_float" unique_id=808391951 instance=ExtResource("1_pjw8f")]
+script = ExtResource("2_na4cm")
+
+[node name="sprite" parent="." index="0" unique_id=1761671244]
+frame = 31

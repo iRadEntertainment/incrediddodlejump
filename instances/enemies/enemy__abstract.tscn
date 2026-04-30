@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://c7xbkxqaxgyyu"]
+
+[ext_resource type="Script" uid="uid://dagmxokp0y75y" path="res://instances/enemies/enemy.gd" id="1_yjlq0"]
+[ext_resource type="Texture2D" uid="uid://cjrrhtf1tifda" path="res://assets/kenney_enemies.png" id="2_v8c5j"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_na4cm"]
+radius = 29.017237
+
+[node name="enemy__abstract" type="Area2D" unique_id=808391951]
+collision_layer = 32
+collision_mask = 18
+script = ExtResource("1_yjlq0")
+
+[node name="sprite" type="Sprite2D" parent="." unique_id=1761671244]
+unique_name_in_owner = true
+texture = ExtResource("2_v8c5j")
+hframes = 8
+vframes = 8
+frame = 18
+
+[node name="coll" type="CollisionShape2D" parent="." unique_id=1324347461]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_na4cm")
+
+[node name="notif" type="VisibleOnScreenNotifier2D" parent="." unique_id=2120322538]
+rect = Rect2(-105, -105, 210, 210)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="notif" to="." method="_on_notif_screen_exited"]

@@ -3,6 +3,8 @@ extends Node
 
 
 const PLATFORM_GRID_SIZE: Vector2i = Vector2i(64, 64)
+const MIN_DIFFICULTY_SCORE: int = 2000
+const MAX_DIFFICULTY_SCORE: int = 20000
 
 #region Self-registering instances
 var game: Game

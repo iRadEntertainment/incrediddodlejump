@@ -35,7 +35,11 @@ var max_height: float = 0.0:
 var score: int:
 	set(value):
 		score = value
+		var difficulty_ratio: float = (score - Mng.MIN_DIFFICULTY_SCORE) / float(Mng.MAX_DIFFICULTY_SCORE)
+		current_difficulty = clampf(difficulty_ratio, 0.0, 1.0)
 		score_updated.emit(score)
+
+var current_difficulty: float # between 0 and 1 depending on the score
 
 
 signal status_updated(status: Status)

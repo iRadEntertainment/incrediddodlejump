@@ -4,6 +4,7 @@ extends CanvasLayer
 
 @onready var lb_score: Label = %lb_score
 @onready var lb_status: Label = %lb_status
+@onready var prog_difficulty: TextureProgressBar = %prog_difficulty
 
 
 func _init() -> void:
@@ -18,6 +19,7 @@ func _ready() -> void:
 
 func _on_score_updated(score: int) -> void:
 	lb_score.text = "%d" % [score]
+	prog_difficulty.value = Mng.game.current_difficulty
 
 
 func _on_game_status_updated(game_status: Game.Status) -> void:

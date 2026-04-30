@@ -53,9 +53,9 @@ func generate_platforms() -> void:
 		
 		# difficulty modifiers
 		var is_moving: bool = Mng.rng.randf() > 0.8
-		var is_breakable: bool = true and can_skip
-		var is_disappear: bool = false
-		var is_long: bool = false
+		var is_disappear: bool = Mng.rng.randf() > 0.9
+		var is_breakable: bool = Mng.rng.randf() > 0.9 and can_skip and not is_disappear
+		var is_long: bool = Mng.rng.randf() > 0.6
 		var has_spring: bool = Mng.rng.randf() > 0.9 and not is_breakable
 		var has_boost: bool = false and not is_breakable
 		

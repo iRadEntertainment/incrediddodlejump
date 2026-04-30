@@ -29,17 +29,26 @@ var has_boost: bool
 
 var _type: Type:
 	get: return _get_type()
+var _half_size: float:
+	get: return abs(coll.shape.b.x)
+var _half_tiles_count: int:
+	get: return 3 if is_long else 2
+var _despawn_height: float # positive on the -y axis
+
 var velocity: Vector2
 var _speed: float = 128.0 #px/s
-var _half_size: float
-var _despawn_height: float # positive on the -y axis
 var _dir_x: int = 1
+
 var _is_activated: bool
 
 
 func _ready() -> void:
 	_despawn_height = -position.y + GRACE_HEIGHT
-	_half_size = abs(coll.shape.b.x)
+	
+	var segment_shape: SegmentShape2D = SegmentShape2D.new()
+	segment_shape.a.x = -32 * _half_tiles_count
+	segment_shape.b.x = -segment_shape.a.x
+	coll.shape = segment_shape
 	
 	var safe_pos_x: float = Mng.viewport_half_size.x - _half_size
 	position.x = clamp(position.x, -safe_pos_x, safe_pos_x)
@@ -53,6 +62,7 @@ func _ready() -> void:
 		var spring: Spring = preload("uid://bnm2aowmnwtdk").instantiate()
 		spring.position.x = Mng.rng.randf_range(-0.5, 0.5) * _half_size
 		add_child(spring)
+	
 	
 	_update_tiles()
 
@@ -70,8 +80,7 @@ func _update_tiles() -> void:
 	var mid_tile: Vector2i = tile_coord[1]
 	var end_tile: Vector2i = tile_coord[2]
 	
-	var half_length: int = 3 if is_long else 2
-	var tiles_range: Array = range(-half_length, half_length)
+	var tiles_range: Array = range(-_half_tiles_count, _half_tiles_count)
 	
 	for i: int in tiles_range.size():
 		var x: int = tiles_range[i]

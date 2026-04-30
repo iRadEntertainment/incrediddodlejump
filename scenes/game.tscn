@@ -64,10 +64,10 @@ texture = SubResource("GradientTexture2D_ryrav")
 motion_scale = Vector2(0.01, 0.01)
 
 [node name="BackgroundClouds" type="TextureRect" parent="bg/clouds_far" unique_id=1308399823]
-offset_left = -40.0
-offset_top = 624.0
-offset_right = 576.0
-offset_bottom = 1168.0
+offset_left = -71.0
+offset_top = 539.0
+offset_right = 545.0
+offset_bottom = 1083.0
 texture = ExtResource("2_fc0e3")
 expand_mode = 1
 stretch_mode = 6
@@ -75,11 +75,11 @@ stretch_mode = 6
 [node name="landscape" type="ParallaxLayer" parent="bg" unique_id=745084839]
 motion_scale = Vector2(0.2, 0.2)
 
-[node name="BackgroundClouds" type="TextureRect" parent="bg/landscape" unique_id=17824597]
-offset_left = -40.0
-offset_top = 624.0
-offset_right = 576.0
-offset_bottom = 1168.0
+[node name="trees" type="TextureRect" parent="bg/landscape" unique_id=17824597]
+offset_left = -71.0
+offset_top = 394.0
+offset_right = 545.0
+offset_bottom = 938.0
 texture = ExtResource("5_vtaks")
 expand_mode = 1
 stretch_mode = 6
@@ -110,7 +110,6 @@ shape = SubResource("WorldBoundaryShape2D_ryrav")
 script = ExtResource("5_j5wjh")
 
 [node name="player" parent="." unique_id=129352850 instance=ExtResource("2_e2o6t")]
-position = Vector2(86, -116)
 collision_mask = 5
 
 [node name="GUI" parent="." unique_id=1756479393 instance=ExtResource("6_ryrav")]

@@ -11,6 +11,7 @@ enum Type {
 @onready var coll: CollisionShape2D = %coll
 @onready var tiles: TileMapLayer = %tiles
 @onready var sfx_break: AudioStreamPlayer = %sfx_break
+@onready var sfx_disappear: AudioStreamPlayer = %sfx_disappear
 
 const GRACE_HEIGHT: float = 128.0 #px
 const TILES_BY_TYPE: Dictionary[Type, Array] = {
@@ -103,6 +104,11 @@ func activate() -> void:
 	if is_breakable:
 		coll.set_deferred(&"disabled", true)
 		sfx_break.play()
+		tw.tween_property(tiles, ^"modulate:a", 0.0, 0.6)
+		tw.tween_callback(queue_free).set_delay(1.0)
+	elif is_disappear:
+		coll.set_deferred(&"disabled", true)
+		sfx_disappear.play()
 		tw.tween_property(tiles, ^"modulate:a", 0.0, 0.6)
 		tw.tween_callback(queue_free).set_delay(1.0)
 	else:

@@ -39,7 +39,7 @@ var max_height: float = 0.0:
 var score: int:
 	set(value):
 		score = value
-		var difficulty_ratio: float = (score - Mng.MIN_DIFFICULTY_SCORE) / float(Mng.MAX_DIFFICULTY_SCORE)
+		var difficulty_ratio: float = inverse_lerp(Mng.MIN_DIFFICULTY_SCORE, Mng.MAX_DIFFICULTY_SCORE, score)
 		current_difficulty = clampf(difficulty_ratio, 0.0, 1.0)
 		score_updated.emit(score)
 

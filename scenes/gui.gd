@@ -12,6 +12,7 @@ func _init() -> void:
 
 
 func _ready() -> void:
+	prog_difficulty.value = 0
 	Mng.game.score_updated.connect(_on_score_updated)
 	Mng.game.status_updated.connect(_on_game_status_updated)
 	_on_game_status_updated(Mng.game.status)

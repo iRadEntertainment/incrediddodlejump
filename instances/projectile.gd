@@ -14,5 +14,6 @@ func _on_notif_screen_exited() -> void:
 	queue_free()
 
 
-func _on_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
+func _on_area_entered(enemy: Enemy) -> void:
+	enemy.die()
+	queue_free()

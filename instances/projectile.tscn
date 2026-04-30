@@ -25,5 +25,5 @@ texture = SubResource("AtlasTexture_r5pch")
 visible = false
 rect = Rect2(-41, -41, 82, 82)
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="screen_exited" from="notif" to="." method="_on_notif_screen_exited"]

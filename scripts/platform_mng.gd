@@ -21,7 +21,7 @@ func _ready() -> void:
 	game.status_updated.connect(_on_game_status_updated)
 	clear()
 	generate_platforms()
-	Mng.game.max_height_updated.connect(_on_max_height_updated)
+	game.max_height_updated.connect(_on_max_height_updated)
 
 
 func _on_max_height_updated(_max_height: float) -> void:

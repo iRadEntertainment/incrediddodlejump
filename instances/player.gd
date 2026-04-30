@@ -24,6 +24,7 @@ extends Area2D
 
 var velocity: Vector2
 var size_x: float
+var is_dead: bool
 
 
 
@@ -39,13 +40,16 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed(&"shoot"):
+	if event.is_action_pressed(&"shoot") and not is_dead:
 		_shoot()
 
 
 func _process(delta: float) -> void:
 	if velocity.x != 0:
 		sprite.flip_h = velocity.x < 0
+	
+	if is_dead:
+		return
 	_process_eyes(delta)
 	_process_mouth(delta)
 
@@ -65,10 +69,13 @@ func _process_mouth(_delta) -> void:
 func _physics_process(delta: float) -> void:
 	velocity.y += g * delta
 	
-	var x_input: float = get_local_mouse_position().x
+	var x_input: float = 0.0
+	if not is_dead:
+		x_input = get_local_mouse_position().x
+	
 	velocity.x = lerpf(velocity.x, x_input, delta * side_movement_responsivness)
 	
-	if velocity.y > 0 and ray_floor.is_colliding():
+	if velocity.y > 0 and ray_floor.is_colliding() and not is_dead:
 		var collider: StaticBody2D = ray_floor.get_collider()
 		if collider is Spring:
 			collider.activate()
@@ -113,6 +120,15 @@ func _close_mouth() -> void:
 	mouth.texture = load("res://assets/Characters/incrediball_mouth_closed.png")
 	await get_tree().create_timer(0.4).timeout
 	mouth.texture = load("res://assets/Characters/incrediball_mouth_open.png")
+
+
+func die(by_enemy: Enemy = null) -> void:
+	is_dead = true
+	if by_enemy:
+		var diff_vector: Vector2 = by_enemy.position.direction_to(position).normalized()
+		velocity = diff_vector * 200
+	await get_tree().create_timer(1.0).timeout
+	Mng.game.status = Game.Status.GAME_OVER
 
 
 func _on_game_status_updated(game_status: Game.Status) -> void:

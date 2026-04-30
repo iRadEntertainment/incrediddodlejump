@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://ci41og0tjmbv5" path="res://assets/Backgrounds/background_color_trees.svg" id="5_vtaks"]
 [ext_resource type="TileSet" uid="uid://kt3e3wyknlvo" path="res://assets/tile_set_tiles.tres" id="6_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://dwsc766o7sdj0" path="res://scenes/gui.tscn" id="6_ryrav"]
+[ext_resource type="Script" uid="uid://c0o16yp2nva0w" path="res://instances/enemies/enemy_mng.gd" id="9_dinhu"]
+[ext_resource type="PackedScene" uid="uid://dcp5wrcuq1b1c" path="res://instances/enemies/enemy_float.tscn" id="9_kvpfn"]
 
 [sub_resource type="Gradient" id="Gradient_7jktm"]
 offsets = PackedFloat32Array(0.56415564, 0.8091887, 1)
@@ -112,7 +114,12 @@ metadata/_edit_lock_ = true
 
 [node name="enemies" type="Node2D" parent="." unique_id=218805999]
 unique_name_in_owner = true
+script = ExtResource("9_dinhu")
 metadata/_edit_lock_ = true
+
+[node name="enemy_float" parent="enemies" unique_id=808391951 instance=ExtResource("9_kvpfn")]
+position = Vector2(105, -979)
+collision_mask = 2
 
 [node name="player" parent="." unique_id=129352850 instance=ExtResource("2_e2o6t")]
 collision_mask = 5

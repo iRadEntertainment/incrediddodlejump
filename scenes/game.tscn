@@ -3,9 +3,7 @@
 [ext_resource type="Script" uid="uid://bo8hqhvdy1mvy" path="res://scenes/game.gd" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://cqv0t8p366o2g" path="res://instances/player.tscn" id="2_e2o6t"]
 [ext_resource type="Texture2D" uid="uid://c6nabd0ww2qk1" path="res://assets/Backgrounds/background_clouds.svg" id="2_fc0e3"]
-[ext_resource type="AudioStream" uid="uid://cun4l7246ygc2" path="res://assets/Sounds/sfx_jump-high.ogg" id="2_hve3p"]
 [ext_resource type="PackedScene" uid="uid://bhc6vnvhndxsa" path="res://instances/cam.tscn" id="3_feb5d"]
-[ext_resource type="AudioStream" uid="uid://oxx4og21cn2k" path="res://assets/Sounds/sfx_disappear.ogg" id="3_mfdv2"]
 [ext_resource type="Script" uid="uid://dmor6piqkclm5" path="res://scripts/platform_mng.gd" id="5_j5wjh"]
 [ext_resource type="Texture2D" uid="uid://ci41og0tjmbv5" path="res://assets/Backgrounds/background_color_trees.svg" id="5_vtaks"]
 [ext_resource type="TileSet" uid="uid://kt3e3wyknlvo" path="res://assets/tile_set_tiles.tres" id="6_0tnpc"]
@@ -38,13 +36,11 @@ script = ExtResource("1_80nbo")
 
 [node name="sfx_start" type="AudioStreamPlayer" parent="sfx" unique_id=2128382834]
 unique_name_in_owner = true
-stream = ExtResource("2_hve3p")
 mix_target = 2
 bus = &"UI"
 
 [node name="sfx_game_over" type="AudioStreamPlayer" parent="sfx" unique_id=1196523111]
 unique_name_in_owner = true
-stream = ExtResource("3_mfdv2")
 mix_target = 2
 bus = &"UI"
 

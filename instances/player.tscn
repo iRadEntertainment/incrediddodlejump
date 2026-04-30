@@ -3,12 +3,24 @@
 [ext_resource type="Script" uid="uid://bs4qjad2dcag6" path="res://instances/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://1hn41h3a54w" path="res://assets/Characters/incrediball_base.png" id="2_5a4mc"]
 [ext_resource type="Texture2D" uid="uid://bi6tlba1unl31" path="res://assets/Characters/incrediball_mouth_closed.png" id="3_5a4mc"]
-[ext_resource type="AudioStream" uid="uid://vslwkxcfgmyj" path="res://assets/Sounds/sfx_bump.ogg" id="3_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://d3yr3cd7bk3dp" path="res://assets/Characters/incrediball_eye.png" id="4_cns3y"]
-[ext_resource type="AudioStream" uid="uid://bb0amrrd72tqw" path="res://assets/Sounds/sfx_hurt.ogg" id="6_kipg0"]
+[ext_resource type="AudioStream" uid="uid://do4jt52diaiw" path="res://assets/Sounds/sfx_04_male_jump_01_artmasterrich.ogg" id="5_kipg0"]
+[ext_resource type="AudioStream" uid="uid://ddogqfmyqnnyw" path="res://assets/Sounds/sfx_02_fire_burst_za-games.ogg" id="6_cns3y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
 radius = 35.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xkcoe"]
+random_pitch = 1.0594631
+random_volume_offset_db = 2.0
+streams_count = 1
+stream_0/stream = ExtResource("5_kipg0")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5a4mc"]
+random_pitch = 1.0594631
+random_volume_offset_db = 2.0
+streams_count = 1
+stream_0/stream = ExtResource("6_cns3y")
 
 [node name="player" type="Area2D" unique_id=939525413]
 collision_layer = 2
@@ -59,12 +71,12 @@ collide_with_areas = true
 
 [node name="sfx_jump" type="AudioStreamPlayer" parent="." unique_id=1736701819]
 unique_name_in_owner = true
-stream = ExtResource("3_i3pqv")
+stream = SubResource("AudioStreamRandomizer_xkcoe")
 mix_target = 2
 bus = &"Sfx"
 
 [node name="sfx_shoot" type="AudioStreamPlayer" parent="." unique_id=830006075]
 unique_name_in_owner = true
-stream = ExtResource("6_kipg0")
+stream = SubResource("AudioStreamRandomizer_5a4mc")
 mix_target = 2
 bus = &"Sfx"

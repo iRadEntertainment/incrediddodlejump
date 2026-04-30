@@ -15,9 +15,11 @@ func _setup() -> void:
 		Type.FLY:
 			can_die = true
 			speed = 120.0
+			sfx_spawn.stream = load("uid://cout3m0rgorst")
 		Type.SPIKES:
 			can_die = false
 			speed = 60.0
+			sfx_spawn.stream = load("uid://d3hhvys70atoa")
 
 
 func _process(delta: float) -> void:

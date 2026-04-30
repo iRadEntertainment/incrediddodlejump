@@ -12,7 +12,7 @@ var cam: GameCamera
 var gui: GUI
 #endregion
 
-
+var os_platform: Script = preload("uid://ckkwcaqpa3klg")
 var viewport_size: Vector2
 var viewport_half_size: Vector2
 

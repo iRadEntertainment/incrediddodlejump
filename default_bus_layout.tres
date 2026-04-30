@@ -1,6 +1,8 @@
 [gd_resource type="AudioBusLayout" format=3 uid="uid://bet7minvtavd5"]
 
 [resource]
+bus/0/bypass_fx = true
+bus/0/volume_db = -16.76818
 bus/1/name = &"Sfx"
 bus/1/solo = false
 bus/1/mute = false

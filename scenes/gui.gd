@@ -2,27 +2,30 @@ class_name GUI
 extends CanvasLayer
 
 
-@onready var lb_score: Label = %lb_score
-@onready var lb_status: Label = %lb_status
-@onready var prog_difficulty: TextureProgressBar = %prog_difficulty
+@onready var hud: HUD = %hud
+@onready var in_game_menu: InGameMenu = %in_game_menu
 
 
 func _init() -> void:
 	Mng.gui = self
 
 
-func _ready() -> void:
-	prog_difficulty.value = 0
-	Mng.game.score_updated.connect(_on_score_updated)
-	Mng.game.status_updated.connect(_on_game_status_updated)
-	_on_game_status_updated(Mng.game.status)
+#func _ready() -> void:
+	#in_game_menu.visibility_changed.connect(_on_menu_visibility_changed)
 
 
-func _on_score_updated(score: int) -> void:
-	lb_score.text = "%d" % [score]
-	prog_difficulty.value = Mng.game.current_difficulty
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed(&"ui_cancel"):
+		toggle_in_game_menu()
 
 
-func _on_game_status_updated(game_status: Game.Status) -> void:
-	lb_status.text = str(Game.Status.keys()[game_status as int]).capitalize()
-	lb_status.visible = game_status != Game.Status.RUNNING
+func toggle_in_game_menu() -> void:
+	in_game_menu.visible = !in_game_menu.visible
+	if in_game_menu.visible:
+		Mng.state = Mng.State.PAUSED
+	else:
+		Mng.state = Mng.state_prev
+
+
+#func _on_menu_visibility_changed() -> void:
+	#get_tree().paused = visible

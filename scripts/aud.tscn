@@ -10,3 +10,15 @@ script = ExtResource("1_bs1vv")
 stream = ExtResource("2_rn8fe")
 bus = &"Music"
 parameters/looping = true
+
+[node name="sfx" type="Node" parent="." unique_id=2117001878]
+
+[node name="sfx_start" type="AudioStreamPlayer" parent="sfx" unique_id=612050108]
+unique_name_in_owner = true
+mix_target = 2
+bus = &"UI"
+
+[node name="sfx_game_over" type="AudioStreamPlayer" parent="sfx" unique_id=96467836]
+unique_name_in_owner = true
+mix_target = 2
+bus = &"UI"

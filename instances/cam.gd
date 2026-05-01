@@ -28,7 +28,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if Mng.game.status != Game.Status.RUNNING:
+	if Mng.state != Mng.State.RUNNING:
 		return
 	if _target_height < position.y:
 		position.y = lerpf(position.y, _target_height, delta * follow_speed)

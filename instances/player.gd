@@ -34,9 +34,9 @@ func _init() -> void:
 
 func _ready() -> void:
 	size_x = sprite.texture.get_size().x * sprite.scale.x
-	set_process(Mng.game.status == Game.Status.RUNNING)
-	set_physics_process(Mng.game.status == Game.Status.RUNNING)
-	Mng.game.status_updated.connect(_on_game_status_updated)
+	set_process(Mng.state == Mng.State.RUNNING)
+	set_physics_process(Mng.state == Mng.State.RUNNING)
+	Mng.state_updated.connect(_on_game_state_updated)
 
 
 func _input(event: InputEvent) -> void:
@@ -133,11 +133,11 @@ func die(by_enemy: Enemy = null) -> void:
 		var diff_vector: Vector2 = by_enemy.position.direction_to(position).normalized()
 		velocity = diff_vector * 200
 	await get_tree().create_timer(1.0).timeout
-	Mng.game.status = Game.Status.GAME_OVER
+	Mng.state = Mng.State.GAME_OVER
 
 
-func _on_game_status_updated(game_status: Game.Status) -> void:
-	if game_status == Game.Status.GAME_OVER:
+func _on_game_state_updated(game_state: Mng.State) -> void:
+	if game_state == Mng.State.GAME_OVER:
 		queue_free()
-	set_process(Mng.game.status == Game.Status.RUNNING)
-	set_physics_process(Mng.game.status == Game.Status.RUNNING)
+	set_process(Mng.state == Mng.State.RUNNING)
+	set_physics_process(Mng.state == Mng.State.RUNNING)

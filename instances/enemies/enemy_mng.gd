@@ -14,7 +14,7 @@ func _ready() -> void:
 	_next_spawn_height = 500
 	#_next_spawn_height = Mng.MAX_ENEMY_SPAWN_HEIGHT
 	clear()
-	game.status_updated.connect(_on_game_status_updated)
+	Mng.state_updated.connect(_on_game_state_updated)
 	game.max_height_updated.connect(_on_max_height_updated)
 
 
@@ -53,6 +53,6 @@ func _on_max_height_updated(_max_height: float) -> void:
 		generate_enemy()
 
 
-func _on_game_status_updated(game_status: Game.Status) -> void:
-	if game_status == Game.Status.INIT:
+func _on_game_state_updated(game_state: Mng.State) -> void:
+	if game_state == Mng.State.INIT:
 		clear()

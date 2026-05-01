@@ -2,7 +2,6 @@
 
 [resource]
 bus/0/bypass_fx = true
-bus/0/volume_db = -16.76818
 bus/1/name = &"Sfx"
 bus/1/solo = false
 bus/1/mute = false
@@ -11,9 +10,9 @@ bus/1/volume_db = 0.0
 bus/1/send = &"Master"
 bus/2/name = &"Music"
 bus/2/solo = false
-bus/2/mute = false
+bus/2/mute = true
 bus/2/bypass_fx = false
-bus/2/volume_db = 0.0
+bus/2/volume_db = -0.2904806
 bus/2/send = &"Master"
 bus/3/name = &"UI"
 bus/3/solo = false

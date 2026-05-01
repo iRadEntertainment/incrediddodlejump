@@ -5,27 +5,11 @@ extends Node2D
 @onready var coll_left: CollisionShape2D = %coll_left
 @onready var coll_right: CollisionShape2D = %coll_right
 
-@onready var sfx_start: AudioStreamPlayer = %sfx_start
-@onready var sfx_game_over: AudioStreamPlayer = %sfx_game_over
-
 @onready var enemies: Node2D = %enemies
 @onready var projectiles: Node2D = %projectiles
 
 
 var grace_deadzone_height = 256.0 #px
-
-enum Status { INIT, RUNNING, GAME_OVER }
-
-var status: Status = Status.INIT:
-	set(value):
-		if status == value:
-			return
-		status = value
-		set_process(status == Status.RUNNING)
-		status_updated.emit(status)
-		match status:
-			Status.RUNNING: sfx_start.play()
-			Status.GAME_OVER: sfx_game_over.play()
 
 var bottom_deadzone_height: float = 0.0
 var current_height: float = 0.0
@@ -57,8 +41,6 @@ var score: int:
 
 var current_difficulty: float # between 0 and 1 depending on the score_raw
 
-
-signal status_updated(status: Status)
 signal max_height_updated(max_height: float)
 signal score_updated(score_raw: int)
 
@@ -77,17 +59,9 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.is_released(): return
-		match status:
-			Status.INIT: start_game()
-			Status.GAME_OVER: restart()
-
-
-func start_game() -> void:
-	status = Status.RUNNING
-
-
-func restart() -> void:
-	get_tree().reload_current_scene()
+		match Mng.state:
+			Mng.State.INIT: Mng.state = Mng.State.RUNNING
+			Mng.State.GAME_OVER: Mng.gui.toggle_in_game_menu()
 
 
 func _process(_delta: float) -> void:
@@ -96,7 +70,7 @@ func _process(_delta: float) -> void:
 	
 	# game over condition
 	if current_height < bottom_deadzone_height:
-		status = Status.GAME_OVER
+		Mng.state = Mng.State.GAME_OVER
 	
 	# going up
 	if max_height < current_height:

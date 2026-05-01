@@ -54,10 +54,10 @@ func _ready() -> void:
 	var safe_pos_x: float = Mng.viewport_half_size.x - _half_size
 	position.x = clamp(position.x, -safe_pos_x, safe_pos_x)
 	
-	Mng.game.status_updated.connect(_on_game_status_updated)
+	Mng.state_updated.connect(_on_game_state_updated)
 	if is_moving:
 		_dir_x = 1 if Mng.rng.randf() > 0.5 else -1
-	_on_game_status_updated(Mng.game.status)
+	_on_game_state_updated(Mng.state)
 	
 	if has_spring:
 		var spring: Spring = preload("uid://bnm2aowmnwtdk").instantiate()
@@ -129,6 +129,6 @@ func _physics_process(delta: float) -> void:
 	elif position.x - _half_size < -Mng.viewport_half_size.x: _dir_x = 1
 
 
-func _on_game_status_updated(game_status: Game.Status) -> void:
-	set_process(game_status == Game.Status.RUNNING)
-	set_physics_process(game_status == Game.Status.RUNNING and is_moving)
+func _on_game_state_updated(game_state: Mng.State) -> void:
+	set_process(game_state == Mng.State.RUNNING)
+	set_physics_process(game_state == Mng.State.RUNNING and is_moving)

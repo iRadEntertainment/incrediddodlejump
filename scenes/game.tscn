@@ -32,18 +32,6 @@ normal = Vector2(-1, 0)
 [node name="game" type="Node2D" unique_id=717966906]
 script = ExtResource("1_80nbo")
 
-[node name="sfx" type="Node" parent="." unique_id=461834367]
-
-[node name="sfx_start" type="AudioStreamPlayer" parent="sfx" unique_id=2128382834]
-unique_name_in_owner = true
-mix_target = 2
-bus = &"UI"
-
-[node name="sfx_game_over" type="AudioStreamPlayer" parent="sfx" unique_id=1196523111]
-unique_name_in_owner = true
-mix_target = 2
-bus = &"UI"
-
 [node name="bg_fix" type="CanvasLayer" parent="." unique_id=818281333]
 layer = -1
 

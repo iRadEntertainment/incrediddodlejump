@@ -18,7 +18,7 @@ var _skipped_platform_count: int
 
 
 func _ready() -> void:
-	game.status_updated.connect(_on_game_status_updated)
+	Mng.state_updated.connect(_on_game_state_updated)
 	clear()
 	generate_platforms()
 	game.max_height_updated.connect(_on_max_height_updated)
@@ -78,7 +78,7 @@ func generate_platforms() -> void:
 	_generated_height = _gen_target_height
 
 
-func _on_game_status_updated(game_status: Game.Status) -> void:
-	if game_status == Game.Status.INIT:
+func _on_game_state_updated(game_state: Mng.State) -> void:
+	if game_state == Mng.State.INIT:
 		clear()
 		generate_platforms()

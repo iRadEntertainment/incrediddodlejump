@@ -25,7 +25,52 @@ var os_platform: Script = preload("uid://ckkwcaqpa3klg")
 var viewport_size: Vector2
 var viewport_half_size: Vector2
 
+#region State
+enum State { INIT, RUNNING, GAME_OVER, PAUSED }
+
+var state: State = State.INIT: set = _set_state
+var state_prev: State
+var game_seed: String
+
+signal state_updated(state: State)
+#endregion
 
 func _ready() -> void:
 	viewport_size = get_viewport().get_visible_rect().size
 	viewport_half_size = viewport_size * 0.5
+
+
+func go_to_title() -> void:
+	pass
+
+
+func start_game(new_game_seed: String = "") -> void:
+	if new_game_seed:
+		game_seed = new_game_seed
+	
+	rng.seed = hash(game_seed)
+	get_tree().paused = false
+	state = State.INIT
+	get_tree().change_scene_to_file("res://scenes/game.tscn")
+
+
+func restart() -> void:
+	rng.seed = hash(game_seed)
+	get_tree().paused = false
+	get_tree().reload_current_scene()
+	state = State.INIT
+
+
+func _set_state(new_state: State) -> void:
+	if state == new_state:
+		return
+	state_prev = state
+	state = new_state
+	set_process(state == State.RUNNING)
+	
+	get_tree().paused = state != State.RUNNING
+	match state:
+		State.RUNNING: Aud.sfx_start.play()
+		State.GAME_OVER: Aud.sfx_game_over.play()
+	
+	state_updated.emit(state)

@@ -1,71 +1,15 @@
 [gd_scene format=3 uid="uid://dwsc766o7sdj0"]
 
 [ext_resource type="Script" uid="uid://cdnvvopn1kuau" path="res://scenes/gui.gd" id="1_80edf"]
-[ext_resource type="Texture2D" uid="uid://clfgp6fswn6qr" path="res://assets/UI/difficulty_bar_background.png" id="2_ynd5l"]
-[ext_resource type="Texture2D" uid="uid://c7g7aovmd884e" path="res://assets/UI/difficulty_bar_foreground.png" id="3_b8iy7"]
+[ext_resource type="PackedScene" uid="uid://da12wyo51l8rd" path="res://scenes/UI/hud.tscn" id="2_ynd5l"]
+[ext_resource type="PackedScene" uid="uid://cikjhn7t0pxs4" path="res://scenes/UI/in_game_menu.tscn" id="4_b8iy7"]
 
 [node name="GUI" type="CanvasLayer" unique_id=1756479393]
+process_mode = 3
 script = ExtResource("1_80edf")
-metadata/_edit_horizontal_guides_ = [915.0, 714.0, 503.0, -173.0]
 
-[node name="hud" type="Control" parent="." unique_id=1035608546]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="lb_score" type="Label" parent="hud" unique_id=2050744400]
+[node name="hud" parent="." unique_id=1132203215 instance=ExtResource("2_ynd5l")]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = 33.0
-offset_bottom = 56.0
-grow_horizontal = 2
-theme_override_constants/outline_size = 8
-theme_override_font_sizes/font_size = 32
-text = "Score"
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="lb_status" type="Label" parent="hud" unique_id=1612926322]
+[node name="in_game_menu" parent="." unique_id=1680935391 instance=ExtResource("4_b8iy7")]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -21.0
-offset_bottom = 21.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/outline_size = 8
-theme_override_font_sizes/font_size = 32
-text = "status"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="prog_difficulty" type="TextureProgressBar" parent="hud" unique_id=1473479490]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 7.0
-offset_top = -319.0
-offset_right = 38.0
-offset_bottom = -6.0
-grow_vertical = 0
-max_value = 1.5
-step = 0.001
-value = 0.635
-fill_mode = 3
-nine_patch_stretch = true
-stretch_margin_left = 6
-stretch_margin_top = 6
-stretch_margin_right = 6
-stretch_margin_bottom = 6
-texture_under = ExtResource("2_ynd5l")
-texture_progress = ExtResource("3_b8iy7")

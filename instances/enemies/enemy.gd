@@ -36,6 +36,7 @@ func _ready() -> void:
 	Mng.game.enemies.register_enemy(self)
 	_setup()
 	sfx_spawn.play()
+	tree_exiting.connect(_on_tree_exiting)
 
 
 func _setup() -> void:
@@ -50,6 +51,12 @@ func die() -> void:
 	coll.set_deferred(&"disabled", true)
 	Mng.game.enemies.deregister_enemy(self)
 	queue_free()
+
+
+func _on_tree_exiting() -> void:
+	if not is_instance_valid(Mng.game): return
+	if not is_instance_valid(Mng.game.enemies): return
+	Mng.game.enemies.deregister_enemy(self)
 
 
 func _on_notif_screen_exited() -> void:

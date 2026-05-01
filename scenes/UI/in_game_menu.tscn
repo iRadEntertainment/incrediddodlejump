@@ -41,5 +41,11 @@ text = "Quit to Title"
 layout_mode = 2
 text = "Restart"
 
+[node name="btn_quit" type="Button" parent="pnl/vb" unique_id=499642157]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit"
+
 [connection signal="pressed" from="pnl/vb/btn_title" to="." method="_on_btn_title_pressed"]
 [connection signal="pressed" from="pnl/vb/btn_restart" to="." method="_on_btn_restart_pressed"]
+[connection signal="pressed" from="pnl/vb/btn_quit" to="." method="_on_btn_quit_pressed"]

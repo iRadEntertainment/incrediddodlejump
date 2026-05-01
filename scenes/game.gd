@@ -47,11 +47,11 @@ signal score_updated(score_raw: int)
 
 func _init() -> void:
 	Mng.game = self
-	Mng.rng = RandomNumberGenerator.new()
 	Mng.rng.seed = hash("namelesscoder")
 
 
 func _ready() -> void:
+	get_tree().paused = false
 	coll_left.position.x = -Mng.viewport_half_size.x
 	coll_right.position.x = Mng.viewport_half_size.x
 

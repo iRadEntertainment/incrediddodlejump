@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://g455lv14gu4t"]
 
+[ext_resource type="Script" uid="uid://de780v0th40u1" path="res://scenes/main.gd" id="1_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://c6nabd0ww2qk1" path="res://assets/Backgrounds/background_clouds.svg" id="2_choun"]
 [ext_resource type="Texture2D" uid="uid://ci41og0tjmbv5" path="res://assets/Backgrounds/background_color_trees.svg" id="3_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://lnd6hxxphdmn" path="res://instances/player_main_title.tscn" id="4_jyhfs"]
@@ -18,7 +19,15 @@ fill_to = Vector2(0.5, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7jktm"]
 
-[node name="main" type="Node2D" unique_id=717966906]
+[node name="main" type="Control" unique_id=1205649778]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tbgi4")
+metadata/_edit_lock_ = true
 
 [node name="bg_fix" type="CanvasLayer" parent="." unique_id=818281333]
 layer = -1
@@ -70,3 +79,21 @@ tile_set = ExtResource("5_trceg")
 
 [node name="player_title" parent="." unique_id=1046359432 instance=ExtResource("4_jyhfs")]
 position = Vector2(156, 1105)
+
+[node name="btn_start" type="Button" parent="." unique_id=801610567]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -141.0
+offset_top = -45.0
+offset_right = 141.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 38
+text = "Start"
+
+[connection signal="pressed" from="btn_start" to="." method="_on_btn_start_pressed"]

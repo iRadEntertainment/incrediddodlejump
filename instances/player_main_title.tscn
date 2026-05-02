@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://lnd6hxxphdmn"]
 
+[ext_resource type="Script" uid="uid://dpps4k6ge8yc7" path="res://instances/player_main_title.gd" id="1_nyfdc"]
 [ext_resource type="Texture2D" uid="uid://1hn41h3a54w" path="res://assets/Characters/incrediball_base.png" id="2_exhsh"]
 [ext_resource type="Texture2D" uid="uid://bi6tlba1unl31" path="res://assets/Characters/incrediball_mouth_closed.png" id="3_q2fab"]
-[ext_resource type="Texture2D" uid="uid://d3yr3cd7bk3dp" path="res://assets/Characters/incrediball_eye.png" id="4_rs62c"]
+[ext_resource type="PackedScene" uid="uid://cijg7oqgaoojh" path="res://instances/googly_eyes.tscn" id="4_nyfdc"]
 [ext_resource type="AudioStream" uid="uid://do4jt52diaiw" path="res://assets/Sounds/sfx_04_male_jump_01_artmasterrich.ogg" id="5_pde20"]
 [ext_resource type="AudioStream" uid="uid://dhwyfx7sry8jf" path="res://assets/Sounds/sfx_04_jump_acebrian.ogg" id="6_4n6k7"]
 
@@ -14,6 +15,7 @@ stream_0/stream = ExtResource("5_pde20")
 stream_1/stream = ExtResource("6_4n6k7")
 
 [node name="player_title" type="Node2D" unique_id=1046359432]
+script = ExtResource("1_nyfdc")
 
 [node name="sprite" type="Sprite2D" parent="." unique_id=1837417507]
 unique_name_in_owner = true
@@ -29,28 +31,8 @@ texture = ExtResource("3_q2fab")
 unique_name_in_owner = true
 position = Vector2(2, 2)
 
-[node name="marker_eye_l" type="Marker2D" parent="sprite" unique_id=1561570984]
+[node name="googly_eyes" parent="sprite" unique_id=1201522551 instance=ExtResource("4_nyfdc")]
 unique_name_in_owner = true
-position = Vector2(-2, -1)
-
-[node name="eye_l" type="Sprite2D" parent="sprite/marker_eye_l" unique_id=1812737040]
-unique_name_in_owner = true
-texture = ExtResource("4_rs62c")
-
-[node name="marker_eye_r" type="Marker2D" parent="sprite" unique_id=881391809]
-unique_name_in_owner = true
-position = Vector2(24, -1)
-
-[node name="eye_r" type="Sprite2D" parent="sprite/marker_eye_r" unique_id=1604131137]
-unique_name_in_owner = true
-texture = ExtResource("4_rs62c")
-
-[node name="ray_floor" type="RayCast2D" parent="." unique_id=149582354]
-unique_name_in_owner = true
-position = Vector2(0, -13)
-target_position = Vector2(0, 15)
-collision_mask = 13
-collide_with_areas = true
 
 [node name="sfx_jump" type="AudioStreamPlayer" parent="." unique_id=1736701819]
 unique_name_in_owner = true

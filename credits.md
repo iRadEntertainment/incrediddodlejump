@@ -1,6 +1,7 @@
 
 ### Graphics
 	[New Platformer Pac - by Kenney](https://www.kenney.nl/assets/new-platformer-pack)
+	[smoke.png - by Aidan_Walker](https://opengameart.org/content/smoke-puff)
 
 ### SFX and music
 	- Platforms

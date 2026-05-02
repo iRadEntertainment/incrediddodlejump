@@ -12,6 +12,7 @@ enum Type {
 @onready var tiles: TileMapLayer = %tiles
 @onready var sfx_break: AudioStreamPlayer = %sfx_break
 @onready var sfx_disappear: AudioStreamPlayer = %sfx_disappear
+@onready var puff_particles: GPUParticles2D = %puff_particles
 
 const GRACE_HEIGHT: float = 128.0 #px
 const TILES_BY_TYPE: Dictionary[Type, Array] = {
@@ -106,11 +107,13 @@ func activate() -> void:
 		sfx_break.play()
 		tw.tween_property(tiles, ^"modulate:a", 0.0, 0.6)
 		tw.tween_callback(queue_free).set_delay(1.0)
+		puff_particles.emitting = true
 	elif is_disappear:
 		coll.set_deferred(&"disabled", true)
 		sfx_disappear.play()
 		tw.tween_property(tiles, ^"modulate:a", 0.0, 0.6)
 		tw.tween_callback(queue_free).set_delay(1.0)
+		puff_particles.emitting = true
 	else:
 		tw.tween_property(self, ^"position:y", 16.0, 0.2).as_relative().set_ease(Tween.EASE_OUT)
 		tw.tween_property(self, ^"position:y", 0.0, 0.2).as_relative().set_ease(Tween.EASE_IN)

@@ -4,6 +4,8 @@
 [ext_resource type="TileSet" uid="uid://kt3e3wyknlvo" path="res://assets/tile_set_tiles.tres" id="2_jmi4v"]
 [ext_resource type="AudioStream" uid="uid://8mswkwc66h27" path="res://assets/Sounds/sfx_crumple.ogg" id="3_jmi4v"]
 [ext_resource type="AudioStream" uid="uid://b45d7sgscwkf6" path="res://assets/Sounds/sfx_disappear.ogg" id="4_wv26k"]
+[ext_resource type="Texture2D" uid="uid://ch8l85ai27d4v" path="res://assets/smoke_sheet.png" id="5_60lbq"]
+[ext_resource type="Material" uid="uid://26s8tpuxw5uj" path="res://assets/puff_particles.tres" id="6_o2ri0"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_iotsf"]
 a = Vector2(-64, 0)
@@ -14,6 +16,13 @@ random_pitch = 1.0594631
 random_volume_offset_db = 1.0
 streams_count = 1
 stream_0/stream = ExtResource("3_jmi4v")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_14nkl"]
+light_mode = 1
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 1
+particles_anim_loop = false
 
 [node name="platform" type="StaticBody2D" unique_id=1593658088]
 collision_layer = 4
@@ -45,3 +54,15 @@ unique_name_in_owner = true
 stream = ExtResource("4_wv26k")
 mix_target = 2
 bus = &"Sfx"
+
+[node name="puff_particles" type="GPUParticles2D" parent="." unique_id=47342303]
+unique_name_in_owner = true
+material = SubResource("CanvasItemMaterial_14nkl")
+position = Vector2(0, 14)
+emitting = false
+amount = 30
+texture = ExtResource("5_60lbq")
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.95
+process_material = ExtResource("6_o2ri0")

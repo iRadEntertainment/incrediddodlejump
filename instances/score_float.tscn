@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bbi4q4ggfvo2b"]
+
+[ext_resource type="Script" uid="uid://bqf4kkurtqe6e" path="res://instances/score_float.gd" id="1_dfpxu"]
+
+[node name="score_float" type="Node2D" unique_id=1190509302]
+script = ExtResource("1_dfpxu")
+
+[node name="lb" type="Label" parent="." unique_id=837372515]
+z_index = 1
+offset_left = -100.0
+offset_top = -15.0
+offset_right = 100.0
+offset_bottom = 15.0
+theme_override_colors/font_color = Color(0.85490197, 0.003921569, 0.18431373, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 26
+text = "-150"
+horizontal_alignment = 1
+vertical_alignment = 1

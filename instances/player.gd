@@ -92,7 +92,7 @@ func _jump(force: float, with_sfx: bool = true) -> void:
 func _shoot() -> void:
 	if Mng.game.score < Mng.SCORE_COST_SHOOT:
 		return
-	Mng.game.score_spent += Mng.SCORE_COST_SHOOT
+	Mng.game.add_score(-Mng.SCORE_COST_SHOOT, shoot_marker.global_position)
 	
 	var proj: Projectile = preload("uid://1pytnpnd7c2h").instantiate()
 	proj.position = shoot_marker.global_position
@@ -121,6 +121,8 @@ func die(by_enemy: Enemy = null) -> void:
 	if by_enemy:
 		var diff_vector: Vector2 = by_enemy.position.direction_to(position).normalized()
 		velocity = diff_vector * 200
+		Mng.game.add_score(-by_enemy.score_lost_on_player_die, global_position)
+	
 	sfx_die.play()
 	
 	await get_tree().create_timer(1.0).timeout

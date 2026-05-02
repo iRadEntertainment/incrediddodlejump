@@ -7,6 +7,7 @@ extends Node2D
 
 @onready var enemies: Node2D = %enemies
 @onready var projectiles: Node2D = %projectiles
+@onready var score_container: Node2D = %score_container
 
 
 var grace_deadzone_height = 256.0 #px
@@ -60,6 +61,17 @@ func _ready() -> void:
 func game_over() -> void:
 	Aud.play_womp_womp()
 	Mng.state = Mng.State.GAME_OVER
+
+
+func add_score(added_score: int, score_position: Vector2) -> void:
+	if added_score > 0:
+		score_gained += added_score
+	else:
+		score_spent += added_score
+	var score_float: ScoreFloat = preload("uid://bbi4q4ggfvo2b").instantiate()
+	score_float.score = added_score
+	score_float.position = score_position
+	score_container.add_child(score_float)
 
 
 func _input(event: InputEvent) -> void:

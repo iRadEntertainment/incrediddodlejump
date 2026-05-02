@@ -108,12 +108,14 @@ func activate() -> void:
 		tw.tween_property(tiles, ^"modulate:a", 0.0, 0.6)
 		tw.tween_callback(queue_free).set_delay(1.0)
 		puff_particles.emitting = true
+		Mng.game.add_score(250, Mng.player.global_position)
 	elif is_disappear:
 		coll.set_deferred(&"disabled", true)
 		sfx_disappear.play()
 		tw.tween_property(tiles, ^"modulate:a", 0.0, 0.6)
 		tw.tween_callback(queue_free).set_delay(1.0)
 		puff_particles.emitting = true
+		Mng.game.add_score(80, Mng.player.global_position)
 	else:
 		tw.tween_property(self, ^"position:y", 16.0, 0.2).as_relative().set_ease(Tween.EASE_OUT)
 		tw.tween_property(self, ^"position:y", 0.0, 0.2).as_relative().set_ease(Tween.EASE_IN)

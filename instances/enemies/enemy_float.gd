@@ -16,10 +16,12 @@ func _setup() -> void:
 			can_die = true
 			speed = 120.0
 			points = 500
+			score_lost_on_player_die = 800
 			sfx_spawn.stream = load("uid://cout3m0rgorst")
 		Type.SPIKES:
 			can_die = false
 			speed = 60.0
+			score_lost_on_player_die = 1200
 			sfx_spawn.stream = load("uid://d3hhvys70atoa")
 
 

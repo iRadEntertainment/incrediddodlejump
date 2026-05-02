@@ -20,6 +20,7 @@ var dir: Vector2:
 		sprite.flip_h = dir.x > 0
 
 var points: int
+var score_lost_on_player_die: int
 
 var speed: float
 var velocity: Vector2
@@ -47,7 +48,7 @@ func _setup() -> void:
 func die() -> void:
 	if not can_die:
 		return
-	Mng.game.score_gained += points
+	Mng.game.add_score(points, global_position)
 	_is_dead = true
 	coll.set_deferred(&"disabled", true)
 	Mng.game.enemies.deregister_enemy(self)

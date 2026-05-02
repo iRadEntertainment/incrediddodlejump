@@ -21,5 +21,6 @@ func _ready() -> void:
 func activate() -> void:
 	sfx_boing.play()
 	_atlas_tex.region = REGION_SPRING_DOWN
+	Mng.game.add_score(120, global_position)
 	await get_tree().create_timer(0.05).timeout
 	_atlas_tex.region = REGION_SPRING_UP

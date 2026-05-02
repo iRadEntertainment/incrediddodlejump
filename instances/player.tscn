@@ -55,19 +55,21 @@ texture = ExtResource("3_5a4mc")
 unique_name_in_owner = true
 position = Vector2(2, 2)
 
-[node name="marker_eye_l" type="Marker2D" parent="sprite" unique_id=1561570984]
+[node name="googly_eyes" type="Node2D" parent="sprite" unique_id=109650037]
+
+[node name="marker_eye_l" type="Marker2D" parent="sprite/googly_eyes" unique_id=1561570984]
 unique_name_in_owner = true
 position = Vector2(-2, -1)
 
-[node name="eye_l" type="Sprite2D" parent="sprite/marker_eye_l" unique_id=1812737040]
+[node name="eye_l" type="Sprite2D" parent="sprite/googly_eyes/marker_eye_l" unique_id=1812737040]
 unique_name_in_owner = true
 texture = ExtResource("4_cns3y")
 
-[node name="marker_eye_r" type="Marker2D" parent="sprite" unique_id=881391809]
+[node name="marker_eye_r" type="Marker2D" parent="sprite/googly_eyes" unique_id=881391809]
 unique_name_in_owner = true
 position = Vector2(24, -1)
 
-[node name="eye_r" type="Sprite2D" parent="sprite/marker_eye_r" unique_id=1604131137]
+[node name="eye_r" type="Sprite2D" parent="sprite/googly_eyes/marker_eye_r" unique_id=1604131137]
 unique_name_in_owner = true
 texture = ExtResource("4_cns3y")
 

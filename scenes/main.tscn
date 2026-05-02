@@ -1,0 +1,72 @@
+[gd_scene format=4 uid="uid://g455lv14gu4t"]
+
+[ext_resource type="Texture2D" uid="uid://c6nabd0ww2qk1" path="res://assets/Backgrounds/background_clouds.svg" id="2_choun"]
+[ext_resource type="Texture2D" uid="uid://ci41og0tjmbv5" path="res://assets/Backgrounds/background_color_trees.svg" id="3_ya4ey"]
+[ext_resource type="PackedScene" uid="uid://lnd6hxxphdmn" path="res://instances/player_main_title.tscn" id="4_jyhfs"]
+[ext_resource type="TileSet" uid="uid://kt3e3wyknlvo" path="res://assets/tile_set_tiles.tres" id="5_trceg"]
+
+[sub_resource type="Gradient" id="Gradient_7jktm"]
+offsets = PackedFloat32Array(0.56415564, 0.8091887, 1)
+colors = PackedColorArray(0.7647059, 0.8901961, 1, 1, 0.65314656, 0.9607217, 0.99999994, 1, 0.65314656, 0.9607217, 0.99999994, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ryrav"]
+gradient = SubResource("Gradient_7jktm")
+width = 2
+height = 256
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7jktm"]
+
+[node name="main" type="Node2D" unique_id=717966906]
+
+[node name="bg_fix" type="CanvasLayer" parent="." unique_id=818281333]
+layer = -1
+
+[node name="bg" type="ParallaxBackground" parent="." unique_id=1610392785]
+
+[node name="bg_sky" type="TextureRect" parent="bg" unique_id=510184892]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_ryrav")
+
+[node name="clouds_far" type="ParallaxLayer" parent="bg" unique_id=1539271708]
+motion_scale = Vector2(0.01, 0.01)
+
+[node name="BackgroundClouds" type="TextureRect" parent="bg/clouds_far" unique_id=1308399823]
+offset_left = -76.0
+offset_top = 563.0
+offset_right = 540.0
+offset_bottom = 1107.0
+texture = ExtResource("2_choun")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="landscape" type="ParallaxLayer" parent="bg" unique_id=745084839]
+motion_scale = Vector2(0.2, 0.2)
+
+[node name="trees" type="TextureRect" parent="bg/landscape" unique_id=17824597]
+offset_left = -33.0
+offset_top = 711.0
+offset_right = 583.0
+offset_bottom = 1255.0
+texture = ExtResource("3_ya4ey")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="ground" type="StaticBody2D" parent="." unique_id=1396525339]
+position = Vector2(268, 1106)
+
+[node name="coll_bot" type="CollisionShape2D" parent="ground" unique_id=230240538]
+unique_name_in_owner = true
+shape = SubResource("WorldBoundaryShape2D_7jktm")
+
+[node name="tiles" type="TileMapLayer" parent="ground" unique_id=1741717536]
+tile_map_data = PackedByteArray("AAD7/wAAAAABAAgAAAD8/wAAAAABAAgAAAD9/wAAAAABAAgAAAD+/wAAAAABAAgAAAD//wAAAAABAAgAAAAAAAAAAAABAAgAAAABAAAAAAABAAgAAAACAAAAAAABAAgAAAADAAAAAAABAAgAAAAEAAAAAAABAAgAAAA=")
+tile_set = ExtResource("5_trceg")
+
+[node name="player_title" parent="." unique_id=1046359432 instance=ExtResource("4_jyhfs")]
+position = Vector2(156, 1105)

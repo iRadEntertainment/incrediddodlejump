@@ -13,5 +13,5 @@ func _ready() -> void:
 
 func play_theme_music() -> void: music.play()
 func play_ready() -> void: sfx_ready.play()
-func play_go() -> void: sfx_go.play()
+func play_go() -> void: sfx_go.play(); sfx_ready.stop()
 func play_womp_womp() -> void: sfx_game_over.play()

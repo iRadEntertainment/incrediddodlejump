@@ -38,6 +38,7 @@ signal state_updated(state: State)
 
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	viewport_size = get_viewport().get_visible_rect().size
 	viewport_half_size = viewport_size * 0.5
 
@@ -64,6 +65,11 @@ func restart() -> void:
 	state = State.INIT
 	get_tree().reload_current_scene()
 	await get_tree().scene_changed
+
+
+func quit() -> void:
+	if not OS.has_feature("web"):
+		get_tree().quit()
 
 
 func _set_state(new_state: State) -> void:

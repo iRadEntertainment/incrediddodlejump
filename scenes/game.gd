@@ -76,6 +76,7 @@ func _process(_delta: float) -> void:
 	
 	# game over condition
 	if current_height < bottom_deadzone_height:
+		Aud.play_womp_womp()
 		Mng.state = Mng.State.GAME_OVER
 	
 	# going up

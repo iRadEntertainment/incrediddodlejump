@@ -8,19 +8,14 @@ extends Area2D
 @onready var sprite: Sprite2D = %sprite
 @onready var mouth: Sprite2D = %mouth
 @onready var shoot_marker: Marker2D = %shoot_marker
+@onready var googly_eyes: Node2D = %googly_eyes
 
-@onready var marker_eye_l: Marker2D = %marker_eye_l
-@onready var marker_eye_r: Marker2D = %marker_eye_r
-@onready var eye_l: Sprite2D = %eye_l
-@onready var eye_r: Sprite2D = %eye_r
 
 @onready var ray_floor: RayCast2D = %ray_floor
 @onready var sfx_jump: AudioStreamPlayer = %sfx_jump
 @onready var sfx_shoot: AudioStreamPlayer = %sfx_shoot
 @onready var sfx_die: AudioStreamPlayer = %sfx_die
 
-@onready var _marker_eye_l_init_pos: Vector2 = marker_eye_l.position
-@onready var _marker_eye_r_init_pos: Vector2 = marker_eye_r.position
 @onready var _mouth_init_pos: Vector2 = mouth.position
 
 var velocity: Vector2
@@ -48,18 +43,11 @@ func _input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	if velocity.x != 0:
 		sprite.flip_h = velocity.x < 0
+		googly_eyes.scale.x = -1 if sprite.flip_h else 1
 	
 	if is_dead:
 		return
-	_process_eyes(delta)
 	_process_mouth(delta)
-
-
-func _process_eyes(_delta: float) -> void:
-	marker_eye_l.position.x = _marker_eye_l_init_pos.x if not sprite.flip_h else -_marker_eye_l_init_pos.x
-	marker_eye_r.position.x = _marker_eye_r_init_pos.x if not sprite.flip_h else -_marker_eye_r_init_pos.x
-	eye_l.position = marker_eye_l.get_local_mouse_position().normalized() * 4
-	eye_r.position = marker_eye_r.get_local_mouse_position().normalized() * 4
 
 
 func _process_mouth(_delta) -> void:

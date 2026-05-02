@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://bs4qjad2dcag6" path="res://instances/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://1hn41h3a54w" path="res://assets/Characters/incrediball_base.png" id="2_5a4mc"]
 [ext_resource type="Texture2D" uid="uid://bi6tlba1unl31" path="res://assets/Characters/incrediball_mouth_closed.png" id="3_5a4mc"]
-[ext_resource type="Texture2D" uid="uid://d3yr3cd7bk3dp" path="res://assets/Characters/incrediball_eye.png" id="4_cns3y"]
+[ext_resource type="PackedScene" uid="uid://cijg7oqgaoojh" path="res://instances/googly_eyes.tscn" id="4_t8gwc"]
 [ext_resource type="AudioStream" uid="uid://do4jt52diaiw" path="res://assets/Sounds/sfx_04_male_jump_01_artmasterrich.ogg" id="5_kipg0"]
-[ext_resource type="AudioStream" uid="uid://ddogqfmyqnnyw" path="res://assets/Sounds/sfx_02_fire_burst_za-games.ogg" id="6_cns3y"]
 [ext_resource type="AudioStream" uid="uid://dhwyfx7sry8jf" path="res://assets/Sounds/sfx_04_jump_acebrian.ogg" id="6_t8gwc"]
+[ext_resource type="AudioStream" uid="uid://j1lvtvqe6tef" path="res://assets/Sounds/sfx_02_fire_ball_qubodup.ogg" id="7_t8gwc"]
 [ext_resource type="AudioStream" uid="uid://cenfy1huflfls" path="res://assets/Sounds/sfx_06_balloon_deflate_terhen.ogg" id="8_t8gwc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
@@ -55,23 +55,8 @@ texture = ExtResource("3_5a4mc")
 unique_name_in_owner = true
 position = Vector2(2, 2)
 
-[node name="googly_eyes" type="Node2D" parent="sprite" unique_id=109650037]
-
-[node name="marker_eye_l" type="Marker2D" parent="sprite/googly_eyes" unique_id=1561570984]
+[node name="googly_eyes" parent="sprite" unique_id=1201522551 instance=ExtResource("4_t8gwc")]
 unique_name_in_owner = true
-position = Vector2(-2, -1)
-
-[node name="eye_l" type="Sprite2D" parent="sprite/googly_eyes/marker_eye_l" unique_id=1812737040]
-unique_name_in_owner = true
-texture = ExtResource("4_cns3y")
-
-[node name="marker_eye_r" type="Marker2D" parent="sprite/googly_eyes" unique_id=881391809]
-unique_name_in_owner = true
-position = Vector2(24, -1)
-
-[node name="eye_r" type="Sprite2D" parent="sprite/googly_eyes/marker_eye_r" unique_id=1604131137]
-unique_name_in_owner = true
-texture = ExtResource("4_cns3y")
 
 [node name="ray_floor" type="RayCast2D" parent="." unique_id=149582354]
 unique_name_in_owner = true

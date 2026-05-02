@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cijg7oqgaoojh"]
+
+[ext_resource type="Texture2D" uid="uid://d3yr3cd7bk3dp" path="res://assets/Characters/incrediball_eye.png" id="1_ju16n"]
+[ext_resource type="Script" uid="uid://8lcfdefy8kb3" path="res://instances/googly_eyes.gd" id="1_vr2xq"]
+
+[node name="googly_eyes" type="Node2D" unique_id=1201522551]
+script = ExtResource("1_vr2xq")
+
+[node name="marker_eye_l" type="Marker2D" parent="." unique_id=1437681972]
+unique_name_in_owner = true
+position = Vector2(-2, -1)
+
+[node name="eye_l" type="Sprite2D" parent="marker_eye_l" unique_id=1541347389]
+unique_name_in_owner = true
+texture = ExtResource("1_ju16n")
+
+[node name="marker_eye_r" type="Marker2D" parent="." unique_id=1501871199]
+unique_name_in_owner = true
+position = Vector2(24, -1)
+
+[node name="eye_r" type="Sprite2D" parent="marker_eye_r" unique_id=1932581473]
+unique_name_in_owner = true
+texture = ExtResource("1_ju16n")

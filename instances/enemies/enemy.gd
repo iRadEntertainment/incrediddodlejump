@@ -9,6 +9,7 @@ enum Type {
 @onready var sprite: Sprite2D = %sprite
 @onready var coll: CollisionShape2D = %coll
 @onready var sfx_spawn: AudioStreamPlayer = %sfx_spawn
+@onready var sfx_hurt: AudioStreamPlayer = %sfx_hurt
 
 var type: Type
 var dir: Vector2:
@@ -50,7 +51,27 @@ func die() -> void:
 	_is_dead = true
 	coll.set_deferred(&"disabled", true)
 	Mng.game.enemies.deregister_enemy(self)
+	sprite.rotate(randf() * TAU)
+	sfx_hurt.play()
+	_jump_dead()
+	await sfx_hurt.finished
 	queue_free()
+
+
+func _jump_dead() -> void:
+	set_process(true)
+	velocity.y = -400
+	velocity.x = 400
+
+
+func _process(delta: float) -> void:
+	if _is_dead:
+		_process_jump_dead(delta)
+
+
+func _process_jump_dead(delta: float) -> void:
+	velocity.y += 980.0 * delta
+	position += velocity * delta
 
 
 func _on_tree_exiting() -> void:
@@ -60,7 +81,8 @@ func _on_tree_exiting() -> void:
 
 
 func _on_notif_screen_exited() -> void:
-	queue_free()
+	if not _is_dead:
+		queue_free()
 
 
 func _on_area_entered(area: Area2D) -> void:

@@ -2,9 +2,16 @@
 
 [ext_resource type="Script" uid="uid://dagmxokp0y75y" path="res://instances/enemies/enemy.gd" id="1_yjlq0"]
 [ext_resource type="Texture2D" uid="uid://cjrrhtf1tifda" path="res://assets/kenney_enemies.png" id="2_v8c5j"]
+[ext_resource type="AudioStream" uid="uid://brmxwt7ex6xrt" path="res://assets/Sounds/sfx_hurt.ogg" id="3_v8c5j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_na4cm"]
 radius = 29.017237
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_cgvgn"]
+random_pitch = 1.3348398
+random_volume_offset_db = 2.0
+streams_count = 1
+stream_0/stream = ExtResource("3_v8c5j")
 
 [node name="enemy__abstract" type="Area2D" unique_id=808391951]
 collision_layer = 32
@@ -27,6 +34,11 @@ rect = Rect2(-105, -105, 210, 210)
 
 [node name="sfx_spawn" type="AudioStreamPlayer" parent="." unique_id=1718661637]
 unique_name_in_owner = true
+bus = &"Sfx"
+
+[node name="sfx_hurt" type="AudioStreamPlayer" parent="." unique_id=675561073]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_cgvgn")
 bus = &"Sfx"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

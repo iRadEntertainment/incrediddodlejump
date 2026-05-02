@@ -13,6 +13,7 @@
 radius = 35.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xkcoe"]
+playback_mode = 1
 random_pitch = 1.0594631
 random_volume_offset_db = 2.0
 streams_count = 2

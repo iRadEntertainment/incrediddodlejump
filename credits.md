@@ -18,6 +18,7 @@
 	- Enemies
 	[BEE_buzzaway.wav - by Department64](https://freesound.org/people/Department64/sounds/103046/)
 	[Saw.wav - by ImATaco](https://freesound.org/people/ImATaco/sounds/702075/)
+	[Dallen Nye Hurt Sound.wav - by DallenNye](https://freesound.org/people/DallenNye/sounds/834121/)
 	- UI
 	[womp_womp.wav - by Paloma.SSSS](https://freesound.org/people/Paloma.SSSS/sounds/841370/)
 	[Retro Ready Go.wav - by grizzlymittz](https://freesound.org/people/grizzlymittz/sounds/529941/)

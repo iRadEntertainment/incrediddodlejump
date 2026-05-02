@@ -24,6 +24,9 @@ func _setup() -> void:
 
 
 func _process(delta: float) -> void:
+	super(delta)
+	if _is_dead:
+		return
 	frames_interval += delta
 	if frames_interval > frames_duration:
 		frames_interval = 0
@@ -32,6 +35,8 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if _is_dead:
+		return
 	_process_bounce_left_right()
 	velocity = speed * dir
 	position += velocity * delta

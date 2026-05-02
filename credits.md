@@ -12,6 +12,7 @@
 	- Player
 	[Male_Jump_01 - by Artmasterrich](https://freesound.org/people/Artmasterrich/sounds/345437/)
 	[jump.wav - by acebrian](https://freesound.org/people/acebrian/sounds/380471/)
+	[fire_ball.wav - by qubodup](https://freesound.org/people/qubodup/sounds/442827/)
 	[fire_burst.wav - by Za-Games](https://freesound.org/people/Za-Games/sounds/539972/)
 	[Balloon_Deflate_Short_7.wav - by Terhen](https://freesound.org/people/Terhen/sounds/234218/)
 	- Enemies

@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dt43hte3lx180" path="res://instances/projectile.gd" id="1_seckb"]
 [ext_resource type="Texture2D" uid="uid://byntnwsod3ven" path="res://assets/kenney_tiles.png" id="2_bnk0c"]
+[ext_resource type="AudioStream" uid="uid://ddogqfmyqnnyw" path="res://assets/Sounds/sfx_02_fire_burst_za-games.ogg" id="3_bnk0c"]
+[ext_resource type="Texture2D" uid="uid://ch8l85ai27d4v" path="res://assets/smoke_sheet.png" id="4_r5pch"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y8l58"]
 radius = 18.027756
@@ -10,20 +12,84 @@ radius = 18.027756
 atlas = ExtResource("2_bnk0c")
 region = Rect2(715, 130, 64, 64)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r5pch"]
+random_pitch = 1.1892071
+random_volume_offset_db = 2.0
+streams_count = 1
+stream_0/stream = ExtResource("3_bnk0c")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xpswg"]
+light_mode = 1
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_em2hn"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ubb2a"]
+curve = SubResource("Curve_em2hn")
+
+[sub_resource type="Gradient" id="Gradient_r5pch"]
+offsets = PackedFloat32Array(0, 0.16006097, 0.2820122, 0.48932928, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.827451, 0.007843138, 1, 0.79607844, 0.3254902, 0.1254902, 1, 0.30980393, 0.30980393, 0.31764707, 1, 0.30999416, 0.31003833, 0.31782436, 0.1254902)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xpswg"]
+gradient = SubResource("Gradient_r5pch")
+
+[sub_resource type="Curve" id="Curve_rrmcl"]
+_data = [Vector2(0, 0.87668633), 0.0, 0.0, 0, 0, Vector2(1, 0.24093586), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_pqxld"]
+curve = SubResource("Curve_rrmcl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ysx3q"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 90.0
+initial_velocity_min = 67.18
+initial_velocity_max = 250.0
+gravity = Vector3(0, 490, 0)
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_pqxld")
+color_ramp = SubResource("GradientTexture1D_xpswg")
+anim_offset_curve = SubResource("CurveTexture_ubb2a")
+
 [node name="projectile" type="Area2D" unique_id=1150948596]
 collision_layer = 16
 collision_mask = 32
 script = ExtResource("1_seckb")
 
 [node name="coll" type="CollisionShape2D" parent="." unique_id=1518235440]
+unique_name_in_owner = true
 shape = SubResource("CircleShape2D_y8l58")
 
 [node name="sprite" type="Sprite2D" parent="." unique_id=1274947431]
+unique_name_in_owner = true
 texture = SubResource("AtlasTexture_r5pch")
 
 [node name="notif" type="VisibleOnScreenNotifier2D" parent="." unique_id=1962108436]
 visible = false
 rect = Rect2(-41, -41, 82, 82)
+
+[node name="sfx_burst" type="AudioStreamPlayer" parent="." unique_id=342677626]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_r5pch")
+
+[node name="burst_particles" type="GPUParticles2D" parent="." unique_id=1707740541]
+unique_name_in_owner = true
+material = SubResource("CanvasItemMaterial_xpswg")
+emitting = false
+amount = 20
+texture = ExtResource("4_r5pch")
+lifetime = 0.8
+one_shot = true
+explosiveness = 0.95
+process_material = SubResource("ParticleProcessMaterial_ysx3q")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="screen_exited" from="notif" to="." method="_on_notif_screen_exited"]

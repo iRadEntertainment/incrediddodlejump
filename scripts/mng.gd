@@ -44,7 +44,7 @@ func _ready() -> void:
 
 
 func go_to_title() -> void:
-	pass
+	get_tree().change_scene_to_file("res://scenes/main.tscn")
 
 
 func start_game(new_game_seed: String = "") -> void:

@@ -75,7 +75,8 @@ func _set_state(new_state: State) -> void:
 	
 	get_tree().paused = not state in [State.RUNNING, State.INIT]
 	match state:
-		State.RUNNING: Aud.sfx_start.play()
-		State.GAME_OVER: Aud.sfx_game_over.play()
+		State.INIT: pass
+		State.RUNNING: Aud.play_go()
+		State.GAME_OVER: pass
 	
 	state_updated.emit(state)

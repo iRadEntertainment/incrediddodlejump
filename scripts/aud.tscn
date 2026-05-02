@@ -2,8 +2,12 @@
 
 [ext_resource type="Script" uid="uid://c4hb0vxp030gn" path="res://scripts/aud.gd" id="1_bs1vv"]
 [ext_resource type="AudioStream" uid="uid://7b76yqpfm6up" path="res://assets/Sounds/mus_mondamusic-retro-arcade-game-music-512837.mp3" id="2_rn8fe"]
+[ext_resource type="AudioStream" uid="uid://dkpvquturk7tc" path="res://assets/Sounds/sfx_ready.ogg" id="3_s4xm5"]
+[ext_resource type="AudioStream" uid="uid://b0hg4r08fesfe" path="res://assets/Sounds/sfx_go.ogg" id="4_6djvh"]
+[ext_resource type="AudioStream" uid="uid://b6b8v2smfjwxi" path="res://assets/Sounds/sfx_womp_womp_palomassss.ogg" id="5_rprbm"]
 
 [node name="Aud" type="Node" unique_id=1459225831]
+process_mode = 3
 script = ExtResource("1_bs1vv")
 
 [node name="music" type="AudioStreamPlayer" parent="." unique_id=1242877852]
@@ -13,12 +17,20 @@ parameters/looping = true
 
 [node name="sfx" type="Node" parent="." unique_id=2117001878]
 
-[node name="sfx_start" type="AudioStreamPlayer" parent="sfx" unique_id=612050108]
+[node name="sfx_ready" type="AudioStreamPlayer" parent="sfx" unique_id=612050108]
 unique_name_in_owner = true
+stream = ExtResource("3_s4xm5")
+mix_target = 2
+bus = &"UI"
+
+[node name="sfx_go" type="AudioStreamPlayer" parent="sfx" unique_id=38385610]
+unique_name_in_owner = true
+stream = ExtResource("4_6djvh")
 mix_target = 2
 bus = &"UI"
 
 [node name="sfx_game_over" type="AudioStreamPlayer" parent="sfx" unique_id=96467836]
 unique_name_in_owner = true
+stream = ExtResource("5_rprbm")
 mix_target = 2
 bus = &"UI"

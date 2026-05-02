@@ -17,6 +17,7 @@ extends Area2D
 @onready var ray_floor: RayCast2D = %ray_floor
 @onready var sfx_jump: AudioStreamPlayer = %sfx_jump
 @onready var sfx_shoot: AudioStreamPlayer = %sfx_shoot
+@onready var sfx_die: AudioStreamPlayer = %sfx_die
 
 @onready var _marker_eye_l_init_pos: Vector2 = marker_eye_l.position
 @onready var _marker_eye_r_init_pos: Vector2 = marker_eye_r.position
@@ -132,8 +133,10 @@ func die(by_enemy: Enemy = null) -> void:
 	if by_enemy:
 		var diff_vector: Vector2 = by_enemy.position.direction_to(position).normalized()
 		velocity = diff_vector * 200
+	sfx_die.play()
+	
 	await get_tree().create_timer(1.0).timeout
-	Mng.state = Mng.State.GAME_OVER
+	Mng.game.game_over()
 
 
 func _on_game_state_updated(game_state: Mng.State) -> void:

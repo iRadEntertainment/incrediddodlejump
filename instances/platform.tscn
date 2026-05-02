@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" uid="uid://c5k6lf7mxfqt7" path="res://instances/platform.gd" id="1_ph1ng"]
 [ext_resource type="TileSet" uid="uid://kt3e3wyknlvo" path="res://assets/tile_set_tiles.tres" id="2_jmi4v"]
-[ext_resource type="AudioStream" uid="uid://dh7gyc0n753aj" path="res://assets/Sounds/sfx_03_barrel_break_kevinkace.ogg" id="3_jmi4v"]
+[ext_resource type="AudioStream" uid="uid://8mswkwc66h27" path="res://assets/Sounds/sfx_crumple.ogg" id="3_jmi4v"]
+[ext_resource type="AudioStream" uid="uid://b45d7sgscwkf6" path="res://assets/Sounds/sfx_disappear.ogg" id="4_wv26k"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_iotsf"]
 a = Vector2(-64, 0)
@@ -41,5 +42,6 @@ bus = &"Sfx"
 
 [node name="sfx_disappear" type="AudioStreamPlayer" parent="." unique_id=756672087]
 unique_name_in_owner = true
+stream = ExtResource("4_wv26k")
 mix_target = 2
 bus = &"Sfx"

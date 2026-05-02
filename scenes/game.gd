@@ -54,6 +54,12 @@ func _ready() -> void:
 	get_tree().paused = false
 	coll_left.position.x = -Mng.viewport_half_size.x
 	coll_right.position.x = Mng.viewport_half_size.x
+	Aud.play_ready()
+
+
+func game_over() -> void:
+	Aud.play_womp_womp()
+	Mng.state = Mng.State.GAME_OVER
 
 
 func _input(event: InputEvent) -> void:

@@ -48,7 +48,6 @@ signal score_updated(score_raw: int)
 
 func _init() -> void:
 	Mng.game = self
-	Mng.rng.seed = hash("namelesscoder")
 
 
 func _ready() -> void:

@@ -67,9 +67,9 @@ func load_user_info() -> void:
 		print("Mng: Cannot load the user file.")
 		return
 	
-	game_seed = user_file.get_value("Stats", "game_seed")
-	score_personal_best = user_file.get_value("Stats", "score_personal_best")
-	height_personal_best = user_file.get_value("Stats", "height_personal_best")
+	game_seed = user_file.get_value("Stats", "game_seed", "namelesscoder")
+	score_personal_best = user_file.get_value("Stats", "score_personal_best", 0)
+	height_personal_best = user_file.get_value("Stats", "height_personal_best", 0)
 	
 	print("Mng: user file loaded.")
 
@@ -86,7 +86,11 @@ func save_user_file() -> void:
 	user_file.set_value("Stats", "score_personal_best", score_personal_best)
 	user_file.set_value("Stats", "height_personal_best", height_personal_best)
 	
-	user_file.save(_user_filepath)
+	var err: Error = user_file.save(_user_filepath)
+	if err != OK:
+		print("Mng: Cannot save the user file at path %s" % (_user_filepath))
+	else:
+		print("Mng: User file saved -> %s" % (_user_filepath))
 
 
 func go_to_title() -> void:

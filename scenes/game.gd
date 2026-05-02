@@ -66,7 +66,9 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.is_released(): return
 		match Mng.state:
-			Mng.State.INIT: Mng.state = Mng.State.RUNNING
+			Mng.State.INIT:
+				Mng.state = Mng.State.RUNNING
+				Aud.play_theme_music()
 			Mng.State.GAME_OVER: Mng.gui.toggle_in_game_menu()
 
 

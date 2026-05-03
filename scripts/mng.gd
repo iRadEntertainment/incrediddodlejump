@@ -165,7 +165,8 @@ func _set_state(new_state: State) -> void:
 				score_previous_run = game.score
 				height_previous_run = game.max_height
 		State.RUNNING:
-			Aud.play_go()
+			if state_prev != State.PAUSED:
+				Aud.play_go()
 		State.GAME_OVER:
 			is_new_score_pb = score_personal_best < game.score
 			score_personal_best = max(score_personal_best, game.score)

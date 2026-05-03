@@ -36,6 +36,7 @@ var _is_dead: bool
 
 func _ready() -> void:
 	Mng.game.enemies.register_enemy(self)
+	Mng.state_updated.connect(_on_game_state_updated)
 	_setup()
 	sfx_spawn.play()
 	tree_exiting.connect(_on_tree_exiting)
@@ -89,3 +90,8 @@ func _on_notif_screen_exited() -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area is Player:
 		area.die(self)
+
+
+func _on_game_state_updated(game_state: Mng.State) -> void:
+	set_process(game_state != Mng.State.PAUSED)
+	set_physics_process(game_state != Mng.State.PAUSED)

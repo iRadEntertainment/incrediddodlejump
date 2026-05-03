@@ -1,11 +1,13 @@
 # singleton for Audio
 extends Node
 
-@onready var music: AudioStreamPlayer = $music
+@onready var music_title: AudioStreamPlayer = $music_title
+@onready var music_theme: AudioStreamPlayer = $music_theme
 @onready var sfx_game_over: AudioStreamPlayer = %sfx_game_over
 @onready var sfx_ready: AudioStreamPlayer = %sfx_ready
 @onready var sfx_go: AudioStreamPlayer = %sfx_go
 
+var _tw_title_music: Tween
 var _tw_theme_music: Tween
 
 #region Volumes
@@ -45,20 +47,38 @@ func _ready() -> void:
 
 
 #region Music
+func play_title_music() -> void:
+	stop_theme_music()
+	if _tw_title_music:
+		_tw_title_music.kill()
+	_tw_title_music = create_tween()
+	music_title.play()
+	_tw_title_music.tween_property(music_title, ^"volume_linear", 1.0, 0.5).from(0.0)
+
+
+func stop_title_music() -> void:
+	if _tw_title_music:
+		_tw_title_music.kill()
+	_tw_title_music = create_tween()
+	_tw_title_music.tween_property(music_title, ^"volume_linear", 0.0, 0.5)
+	_tw_title_music.tween_callback(music_title.stop)
+
+
 func play_theme_music() -> void:
+	stop_title_music()
 	if _tw_theme_music:
 		_tw_theme_music.kill()
 	_tw_theme_music = create_tween()
-	music.play()
-	_tw_theme_music.tween_property(music, ^"volume_linear", 1.0, 0.5).from(0.0)
+	music_theme.play()
+	_tw_theme_music.tween_property(music_theme, ^"volume_linear", 1.0, 0.5).from(0.0)
 
 
 func stop_theme_music() -> void:
 	if _tw_theme_music:
 		_tw_theme_music.kill()
 	_tw_theme_music = create_tween()
-	_tw_theme_music.tween_property(music, ^"volume_linear", 0.0, 0.5)
-	_tw_theme_music.tween_callback(music.stop)
+	_tw_theme_music.tween_property(music_theme, ^"volume_linear", 0.0, 0.5)
+	_tw_theme_music.tween_callback(music_theme.stop)
 #endregion
 
 

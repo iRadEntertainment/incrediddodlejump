@@ -98,6 +98,7 @@ func go_to_title() -> void:
 
 
 func start_game(new_game_seed: String = "") -> void:
+	Aud.stop_title_music()
 	if new_game_seed:
 		game_seed = new_game_seed
 		rng.seed = hash(game_seed)

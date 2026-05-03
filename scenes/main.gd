@@ -8,6 +8,7 @@ func _ready() -> void:
 	btn_back.hide()
 	get_tree().paused = false
 	tabs.current_tab = 0
+	Aud.play_title_music()
 
 
 func _on_btn_start_pressed() -> void: Mng.start_game()

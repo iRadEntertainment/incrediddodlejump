@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bia5qh6t1k3w6"]
 
 [ext_resource type="Script" uid="uid://c4hb0vxp030gn" path="res://scripts/aud.gd" id="1_bs1vv"]
+[ext_resource type="AudioStream" uid="uid://cgmvcfi1jyunq" path="res://assets/Sounds/mus_starostin-lounge-jazz-elevator-music-489965.mp3" id="2_6djvh"]
 [ext_resource type="AudioStream" uid="uid://7b76yqpfm6up" path="res://assets/Sounds/mus_mondamusic-retro-arcade-game-music-512837.mp3" id="2_rn8fe"]
 [ext_resource type="AudioStream" uid="uid://dkpvquturk7tc" path="res://assets/Sounds/sfx_ready.ogg" id="3_s4xm5"]
 [ext_resource type="AudioStream" uid="uid://b0hg4r08fesfe" path="res://assets/Sounds/sfx_go.ogg" id="4_6djvh"]
@@ -10,7 +11,12 @@
 process_mode = 3
 script = ExtResource("1_bs1vv")
 
-[node name="music" type="AudioStreamPlayer" parent="." unique_id=1242877852]
+[node name="music_title" type="AudioStreamPlayer" parent="." unique_id=1770450285]
+stream = ExtResource("2_6djvh")
+bus = &"Music"
+parameters/looping = true
+
+[node name="music_theme" type="AudioStreamPlayer" parent="." unique_id=1242877852]
 stream = ExtResource("2_rn8fe")
 bus = &"Music"
 parameters/looping = true

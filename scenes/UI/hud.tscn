@@ -4,6 +4,11 @@
 [ext_resource type="Script" uid="uid://c810tv4ugogk3" path="res://scenes/UI/hud.gd" id="1_y5tme"]
 [ext_resource type="Texture2D" uid="uid://c7g7aovmd884e" path="res://assets/UI/difficulty_bar_foreground.png" id="2_y5tme"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_y5tme"]
+font_size = 50
+font_color = Color(0.85490197, 0.003921569, 0.18431373, 1)
+outline_size = 10
+
 [node name="hud" type="Control" unique_id=1132203215]
 layout_mode = 3
 anchors_preset = 15
@@ -13,22 +18,35 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_y5tme")
 
-[node name="lb_score" type="Label" parent="." unique_id=56636476]
-unique_name_in_owner = true
+[node name="vb_top" type="VBoxContainer" parent="." unique_id=301175855]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_top = 33.0
-offset_bottom = 56.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="prog_personal_best" type="ProgressBar" parent="vb_top" unique_id=1514798284]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.0
+value = 0.4
+show_percentage = false
+
+[node name="lb_score" type="Label" parent="vb_top" unique_id=56636476]
+unique_name_in_owner = true
+layout_mode = 2
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 32
-text = "Score"
+text = "00"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="lb_state" type="Label" parent="." unique_id=211415395]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -43,6 +61,31 @@ theme_override_font_sizes/font_size = 32
 text = "status"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="lb_ready" type="Label" parent="." unique_id=827677902]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 2.0
+anchor_bottom = 0.5
+offset_top = -21.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 32
+text = "READY?"
+label_settings = SubResource("LabelSettings_y5tme")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bg_poly" type="Polygon2D" parent="lb_ready" unique_id=933079627]
+show_behind_parent = true
+position = Vector2(1, 12.5)
+color = Color(0.7176471, 0.85882354, 0.6666667, 1)
+polygon = PackedVector2Array(251, -16, 209, -63, 200, -15, 134, -35, 144, 6, 19, 20, 151, 41, 62, 104, 199, 61, 201, 108, 260, 69, 284, 105, 307, 63, 353, 119, 340, 56, 422, 105, 379, 43, 466, 33, 393, 16, 468, -27, 378, -7, 404, -65, 349, -15, 332, -78, 299, -17, 269, -49)
 
 [node name="prog_difficulty" type="TextureProgressBar" parent="." unique_id=1992332244]
 unique_name_in_owner = true

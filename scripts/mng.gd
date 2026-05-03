@@ -42,7 +42,10 @@ var state: State = State.INIT: set = _set_state
 var state_prev: State
 var game_seed: String
 var score_personal_best: int
-var height_personal_best: int
+var score_previous_run: int
+var is_new_score_pb: bool
+var height_personal_best: float
+var height_previous_run: float
 
 signal state_updated(state: State)
 #endregion
@@ -69,7 +72,9 @@ func load_user_info() -> void:
 	
 	game_seed = user_file.get_value("Stats", "game_seed", "namelesscoder")
 	score_personal_best = user_file.get_value("Stats", "score_personal_best", 0)
-	height_personal_best = user_file.get_value("Stats", "height_personal_best", 0)
+	score_previous_run = user_file.get_value("Stats", "score_previous_run", 0)
+	height_personal_best = user_file.get_value("Stats", "height_personal_best", 0.0)
+	height_previous_run = user_file.get_value("Stats", "height_previous_run", 0.0)
 	
 	print("Mng: user file loaded.")
 
@@ -84,7 +89,9 @@ func save_user_file() -> void:
 	
 	user_file.set_value("Stats", "game_seed", game_seed)
 	user_file.set_value("Stats", "score_personal_best", score_personal_best)
+	user_file.set_value("Stats", "score_previous_run", score_previous_run)
 	user_file.set_value("Stats", "height_personal_best", height_personal_best)
+	user_file.set_value("Stats", "height_previous_run", height_previous_run)
 	
 	var err: Error = user_file.save(_user_filepath)
 	if err != OK:
@@ -137,6 +144,7 @@ func _set_state(new_state: State) -> void:
 		State.INIT: pass
 		State.RUNNING: Aud.play_go()
 		State.GAME_OVER:
+			is_new_score_pb = score_personal_best < Mng.game.score
 			score_personal_best = max(score_personal_best, Mng.game.score)
 			height_personal_best = max(height_personal_best, Mng.game.max_height)
 			save_user_file()

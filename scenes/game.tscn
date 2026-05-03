@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ci41og0tjmbv5" path="res://assets/Backgrounds/background_color_trees.svg" id="5_vtaks"]
 [ext_resource type="TileSet" uid="uid://kt3e3wyknlvo" path="res://assets/tile_set_tiles.tres" id="6_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://dwsc766o7sdj0" path="res://scenes/gui.tscn" id="6_ryrav"]
+[ext_resource type="Script" uid="uid://f0v1nrwfo7y8" path="res://scripts/line_height_markers.gd" id="6_vtaks"]
 [ext_resource type="Script" uid="uid://c0o16yp2nva0w" path="res://instances/enemies/enemy_mng.gd" id="9_dinhu"]
 
 [sub_resource type="Gradient" id="Gradient_7jktm"]
@@ -90,6 +91,9 @@ shape = SubResource("WorldBoundaryShape2D_fc0e3")
 [node name="coll_right" type="CollisionShape2D" parent="ground" unique_id=1774918232]
 unique_name_in_owner = true
 shape = SubResource("WorldBoundaryShape2D_ryrav")
+
+[node name="line_height_markers" type="Node2D" parent="." unique_id=487900339]
+script = ExtResource("6_vtaks")
 
 [node name="platforms" type="Node2D" parent="." unique_id=1827712176]
 script = ExtResource("5_j5wjh")

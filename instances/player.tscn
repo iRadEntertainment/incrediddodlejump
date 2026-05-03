@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cijg7oqgaoojh" path="res://instances/googly_eyes.tscn" id="4_t8gwc"]
 [ext_resource type="AudioStream" uid="uid://do4jt52diaiw" path="res://assets/Sounds/sfx_04_male_jump_01_artmasterrich.ogg" id="5_kipg0"]
 [ext_resource type="AudioStream" uid="uid://dhwyfx7sry8jf" path="res://assets/Sounds/sfx_04_jump_acebrian.ogg" id="6_t8gwc"]
+[ext_resource type="AudioStream" uid="uid://3ylugphv3uhe" path="res://assets/Sounds/sfx_weee.ogg" id="7_4sq38"]
 [ext_resource type="AudioStream" uid="uid://j1lvtvqe6tef" path="res://assets/Sounds/sfx_02_fire_ball_qubodup.ogg" id="7_t8gwc"]
 [ext_resource type="AudioStream" uid="uid://cenfy1huflfls" path="res://assets/Sounds/sfx_06_balloon_deflate_terhen.ogg" id="8_t8gwc"]
 
@@ -19,6 +20,12 @@ random_volume_offset_db = 2.0
 streams_count = 2
 stream_0/stream = ExtResource("5_kipg0")
 stream_1/stream = ExtResource("6_t8gwc")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gba5r"]
+random_pitch = 1.0594631
+random_volume_offset_db = 2.0
+streams_count = 1
+stream_0/stream = ExtResource("7_4sq38")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5a4mc"]
 random_pitch = 1.0594631
@@ -69,6 +76,12 @@ collide_with_areas = true
 [node name="sfx_jump" type="AudioStreamPlayer" parent="." unique_id=1736701819]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_xkcoe")
+mix_target = 2
+bus = &"Sfx"
+
+[node name="sfx_weee" type="AudioStreamPlayer" parent="." unique_id=936110693]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_gba5r")
 mix_target = 2
 bus = &"Sfx"
 

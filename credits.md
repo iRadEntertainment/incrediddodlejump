@@ -15,6 +15,7 @@
 	[fire_ball.wav - by qubodup](https://freesound.org/people/qubodup/sounds/442827/)
 	[fire_burst.wav - by Za-Games](https://freesound.org/people/Za-Games/sounds/539972/)
 	[Balloon_Deflate_Short_7.wav - by Terhen](https://freesound.org/people/Terhen/sounds/234218/)
+	[Funny Cheering Shout.wav - by Kastenfrosch](https://freesound.org/people/Kastenfrosch/sounds/521965/)
 	- Enemies
 	[BEE_buzzaway.wav - by Department64](https://freesound.org/people/Department64/sounds/103046/)
 	[Saw.wav - by ImATaco](https://freesound.org/people/ImATaco/sounds/702075/)

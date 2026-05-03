@@ -15,6 +15,7 @@ extends Area2D
 @onready var sfx_jump: AudioStreamPlayer = %sfx_jump
 @onready var sfx_shoot: AudioStreamPlayer = %sfx_shoot
 @onready var sfx_die: AudioStreamPlayer = %sfx_die
+@onready var sfx_weee: AudioStreamPlayer = %sfx_weee
 
 @onready var _mouth_init_pos: Vector2 = mouth.position
 
@@ -69,6 +70,7 @@ func _physics_process(delta: float) -> void:
 		if collider is Spring:
 			collider.activate()
 			_jump(collider.jump_force, false)
+			sfx_weee.play()
 		elif collider is Platform:
 			collider.activate()
 			if not collider.is_breakable:

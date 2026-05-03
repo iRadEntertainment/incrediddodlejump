@@ -7,6 +7,7 @@
 [ext_resource type="TileSet" uid="uid://kt3e3wyknlvo" path="res://assets/tile_set_tiles.tres" id="5_trceg"]
 [ext_resource type="Texture2D" uid="uid://01jr7ftrxlj" path="res://assets/Theme/main_logo.png" id="6_tefeu"]
 [ext_resource type="Texture2D" uid="uid://bju703a1tkolg" path="res://assets/Theme/jump.svg" id="7_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://coc72ha2ks3xp" path="res://scenes/UI/settings.tscn" id="8_tipki"]
 
 [sub_resource type="Gradient" id="Gradient_7jktm"]
 offsets = PackedFloat32Array(0.56415564, 0.8091887, 1)
@@ -161,20 +162,8 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 38
 text = "Quit"
 
-[node name="settings" type="PanelContainer" parent="mid/vb/tabs" unique_id=66899417]
+[node name="settings" parent="mid/vb/tabs" unique_id=407811769 instance=ExtResource("8_tipki")]
 visible = false
-layout_mode = 2
-metadata/_tab_index = 1
-
-[node name="vb" type="VBoxContainer" parent="mid/vb/tabs/settings" unique_id=1431195881]
-layout_mode = 2
-
-[node name="lb_title" type="Label" parent="mid/vb/tabs/settings/vb" unique_id=1077527609]
-layout_mode = 2
-text = "Settings"
-label_settings = SubResource("LabelSettings_o6xl0")
-
-[node name="sep" type="HSeparator" parent="mid/vb/tabs/settings/vb" unique_id=1474673741]
 layout_mode = 2
 
 [node name="credits" type="PanelContainer" parent="mid/vb/tabs" unique_id=389576715]

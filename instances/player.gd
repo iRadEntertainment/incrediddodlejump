@@ -22,6 +22,9 @@ extends Area2D
 var velocity: Vector2
 var size_x: float
 var is_dead: bool
+var _can_input: bool:
+	get:
+		return Mng.state == Mng.State.RUNNING and not is_dead
 
 
 
@@ -37,6 +40,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if not _can_input: return
 	if event.is_action_pressed(&"shoot") and not is_dead:
 		_shoot()
 
@@ -60,12 +64,12 @@ func _physics_process(delta: float) -> void:
 	velocity.y += g * delta
 	
 	var x_input: float = 0.0
-	if not is_dead:
+	if _can_input:
 		x_input = get_local_mouse_position().x
 	
 	velocity.x = lerpf(velocity.x, x_input, delta * side_movement_responsivness)
 	
-	if velocity.y > 0 and ray_floor.is_colliding() and not is_dead:
+	if velocity.y > 0 and ray_floor.is_colliding() and _can_input:
 		var collider: StaticBody2D = ray_floor.get_collider()
 		if collider is Spring:
 			collider.activate()

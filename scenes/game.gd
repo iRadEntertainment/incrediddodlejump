@@ -84,6 +84,9 @@ func _input(event: InputEvent) -> void:
 
 
 func _process(_delta: float) -> void:
+	if Mng.state == Mng.State.GAME_OVER:
+		set_process(false)
+		return
 	bottom_deadzone_height = Mng.cam.bottom_height - grace_deadzone_height
 	current_height = -Mng.player.position.y
 	

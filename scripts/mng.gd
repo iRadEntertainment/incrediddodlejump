@@ -77,6 +77,11 @@ func load_user_info() -> void:
 	height_previous_run = user_file.get_value("Stats", "height_previous_run", 0.0)
 	
 	print("Mng: user file loaded.")
+	print("game_seed", game_seed)
+	print("score_personal_best", score_personal_best)
+	print("score_previous_run", score_previous_run)
+	print("height_personal_best", height_personal_best)
+	print("height_previous_run", height_previous_run)
 
 
 func save_user_file() -> void:
@@ -101,6 +106,9 @@ func save_user_file() -> void:
 
 
 func go_to_title() -> void:
+	if game:
+		if state != State.GAME_OVER:
+			state = State.GAME_OVER
 	get_tree().change_scene_to_file("res://scenes/main.tscn")
 
 
@@ -113,12 +121,14 @@ func start_game(new_game_seed: String = "") -> void:
 		randomize()
 		rng.seed = randi()
 	
-	get_tree().paused = false
 	state = State.INIT
 	get_tree().change_scene_to_file("res://scenes/game.tscn")
 
 
 func restart() -> void:
+	if game:
+		if state != State.GAME_OVER:
+			state = State.GAME_OVER
 	save_user_file()
 	rng.seed = hash(game_seed)
 	state = State.INIT
@@ -127,6 +137,9 @@ func restart() -> void:
 
 
 func quit() -> void:
+	if game:
+		if state != State.GAME_OVER:
+			state = State.GAME_OVER
 	save_user_file()
 	if not OS.has_feature("web"):
 		get_tree().quit()
@@ -139,14 +152,17 @@ func _set_state(new_state: State) -> void:
 	state = new_state
 	set_process(state == State.RUNNING)
 	
-	get_tree().paused = not state in [State.RUNNING, State.INIT]
-	match state:
-		State.INIT: pass
-		State.RUNNING: Aud.play_go()
+	match new_state:
+		State.INIT:
+			if is_instance_valid(game):
+				score_previous_run = game.score
+				height_previous_run = game.max_height
+		State.RUNNING:
+			Aud.play_go()
 		State.GAME_OVER:
-			is_new_score_pb = score_personal_best < Mng.game.score
-			score_personal_best = max(score_personal_best, Mng.game.score)
-			height_personal_best = max(height_personal_best, Mng.game.max_height)
+			is_new_score_pb = score_personal_best < game.score
+			score_personal_best = max(score_personal_best, game.score)
+			height_personal_best = max(height_personal_best, game.max_height)
 			save_user_file()
 	
 	state_updated.emit(state)

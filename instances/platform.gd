@@ -122,11 +122,15 @@ func activate() -> void:
 
 
 func _process(_delta: float) -> void:
+	if Mng.state != Mng.State.RUNNING:
+		return
 	if Mng.cam.bottom_height > _despawn_height:
 		queue_free()
 
 
 func _physics_process(delta: float) -> void:
+	if Mng.state != Mng.State.RUNNING:
+		return
 	velocity.x = _speed * _dir_x
 	position += velocity * delta
 	

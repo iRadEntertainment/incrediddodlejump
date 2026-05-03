@@ -50,4 +50,5 @@ size_flags_vertical = 3
 theme_override_font_sizes/font_size = 38
 text = "Let's GO!"
 
+[connection signal="pressed" from="vb/hb_seed/btn_random_seed" to="." method="_on_btn_random_seed_pressed"]
 [connection signal="pressed" from="vb/btn_play" to="." method="_on_btn_play_pressed"]

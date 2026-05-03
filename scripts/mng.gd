@@ -36,11 +36,12 @@ var user_file: ConfigFile
 
 #region State
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var game_seed: String = "namelesscoder"
+
 enum State { INIT, RUNNING, GAME_OVER, PAUSED }
 
 var state: State = State.INIT: set = _set_state
 var state_prev: State
-var game_seed: String
 var score_personal_best: int
 var score_previous_run: int
 var is_new_score_pb: bool

@@ -7,6 +7,7 @@ content_margin_left = 8.0
 content_margin_right = 8.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_m6kru"]
+font_size = 18
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 

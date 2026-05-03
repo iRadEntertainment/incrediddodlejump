@@ -39,7 +39,7 @@ func _update() -> void:
 	
 	_lb_settings.font_color = col
 	lb.text = label
-	lb_value.text = "%.1f" % (position.y)
+	lb_value.text = "%.1f" % (-position.y)
 
 func _on_notif_screen_exited() -> void:
 	queue_free()

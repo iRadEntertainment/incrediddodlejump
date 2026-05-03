@@ -115,12 +115,14 @@ func go_to_title() -> void:
 
 func start_game(new_game_seed: String = "") -> void:
 	Aud.stop_title_music()
+	Aud.stop_theme_music()
 	if new_game_seed:
 		game_seed = new_game_seed
-		rng.seed = hash(game_seed)
 	else:
 		randomize()
-		rng.seed = randi()
+		game_seed = str(randi())
+	
+	rng.seed = hash(game_seed)
 	
 	state = State.INIT
 	get_tree().change_scene_to_file("res://scenes/game.tscn")
@@ -131,17 +133,8 @@ func restart() -> void:
 		if state != State.GAME_OVER:
 			state = State.GAME_OVER
 	
-	if game_seed:
-		rng.seed = hash(game_seed)
-	else:
-		randomize()
-		rng.seed = randi()
-	
 	save_user_file()
-	rng.seed = hash(game_seed)
-	state = State.INIT
-	get_tree().reload_current_scene()
-	await get_tree().scene_changed
+	start_game(game_seed)
 
 
 func quit() -> void:

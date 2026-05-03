@@ -129,6 +129,13 @@ func restart() -> void:
 	if game:
 		if state != State.GAME_OVER:
 			state = State.GAME_OVER
+	
+	if game_seed:
+		rng.seed = hash(game_seed)
+	else:
+		randomize()
+		rng.seed = randi()
+	
 	save_user_file()
 	rng.seed = hash(game_seed)
 	state = State.INIT

@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://dsbqwwr3f4pfq"]
+
+[ext_resource type="Script" uid="uid://b3y84tphtmqmm" path="res://scenes/UI/play_menu.gd" id="1_5kinq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_85g3d"]
+font_size = 22
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_choun"]
+outline_size = 3
+outline_color = Color(0.30980393, 0.30980393, 0.31764707, 1)
+
+[node name="play_menu" type="PanelContainer" unique_id=242382932]
+size_flags_vertical = 3
+script = ExtResource("1_5kinq")
+
+[node name="vb" type="VBoxContainer" parent="." unique_id=1507795999]
+layout_mode = 2
+alignment = 1
+
+[node name="lb0" type="Label" parent="vb" unique_id=1925968602]
+layout_mode = 2
+text = "Choose a seed!"
+label_settings = SubResource("LabelSettings_85g3d")
+
+[node name="hb_seed" type="HBoxContainer" parent="vb" unique_id=1589985744]
+layout_mode = 2
+
+[node name="ln_seed" type="LineEdit" parent="vb/hb_seed" unique_id=1739096951]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "RNG seed for next game"
+max_length = 25
+
+[node name="btn_random_seed" type="Button" parent="vb/hb_seed" unique_id=661057990]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+text = "o"
+
+[node name="lb1" type="Label" parent="vb" unique_id=1702311426]
+layout_mode = 2
+text = "leave empty for whatever"
+label_settings = SubResource("LabelSettings_choun")
+
+[node name="btn_play" type="Button" parent="vb" unique_id=1586475304]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 38
+text = "Let's GO!"
+
+[connection signal="pressed" from="vb/btn_play" to="." method="_on_btn_play_pressed"]

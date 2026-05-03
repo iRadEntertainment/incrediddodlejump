@@ -11,10 +11,16 @@ func _ready() -> void:
 	Aud.play_title_music()
 
 
-func _on_btn_start_pressed() -> void: Mng.start_game()
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed(&"ui_cancel"):
+		if btn_back.is_visible_in_tree():
+			_on_btn_back_pressed()
+
+
 func _on_btn_back_pressed() -> void: tabs.current_tab = 0
-func _on_btn_settings_pressed() -> void: tabs.current_tab = 1
-func _on_btn_credits_pressed() -> void: tabs.current_tab = 2
+func _on_btn_play_pressed() -> void: tabs.current_tab = 1
+func _on_btn_settings_pressed() -> void: tabs.current_tab = 2
+func _on_btn_credits_pressed() -> void: tabs.current_tab = 3
 func _on_btn_quit_pressed() -> void: Mng.quit()
 
 func _on_tabs_tab_changed(tab: int) -> void:

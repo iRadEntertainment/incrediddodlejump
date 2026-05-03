@@ -3,14 +3,6 @@
 [ext_resource type="Script" uid="uid://dvmcc4c2tgty7" path="res://scenes/UI/settings.gd" id="1_t8pki"]
 [ext_resource type="PackedScene" uid="uid://brvnq7ljel2o6" path="res://scenes/UI/hb_volume.tscn" id="2_32w1k"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_o6xl0"]
-font_size = 28
-font_color = Color(1, 0.827451, 0.007843138, 1)
-outline_size = 8
-outline_color = Color(0.79607844, 0.3254902, 0.1254902, 1)
-shadow_size = 8
-shadow_color = Color(0, 0, 0, 0.36078432)
-
 [node name="settings" type="PanelContainer" unique_id=407811769]
 offset_left = 82.0
 offset_top = 177.0
@@ -22,29 +14,29 @@ metadata/_tab_index = 1
 [node name="vb" type="VBoxContainer" parent="." unique_id=318162294]
 layout_mode = 2
 
-[node name="lb_title" type="Label" parent="vb" unique_id=629879657]
-layout_mode = 2
-text = "Settings"
-label_settings = SubResource("LabelSettings_o6xl0")
-
-[node name="sep" type="HSeparator" parent="vb" unique_id=1483792338]
-layout_mode = 2
-
 [node name="hb_vol_master" parent="vb" unique_id=955014256 instance=ExtResource("2_32w1k")]
 layout_mode = 2
 label = "master"
+color_unmuted = Color(0.855, 0.004, 0.184, 1)
+color_muted = Color(1, 0.992, 0.996, 1)
 
 [node name="hb_vol_sfx" parent="vb" unique_id=942494079 instance=ExtResource("2_32w1k")]
 layout_mode = 2
 label = "sfx"
 bus = 1
+color_unmuted = Color(0.855, 0.004, 0.184, 1)
+color_muted = Color(1, 0.992, 0.996, 1)
 
 [node name="hb_vol_music" parent="vb" unique_id=828964702 instance=ExtResource("2_32w1k")]
 layout_mode = 2
 label = "music"
 bus = 2
+color_unmuted = Color(0.855, 0.004, 0.184, 1)
+color_muted = Color(1, 0.992, 0.996, 1)
 
 [node name="hb_vol_ui" parent="vb" unique_id=703984222 instance=ExtResource("2_32w1k")]
 layout_mode = 2
 label = "UI"
 bus = 3
+color_unmuted = Color(0.855, 0.004, 0.184, 1)
+color_muted = Color(1, 0.992, 0.996, 1)

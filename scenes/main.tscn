@@ -22,11 +22,50 @@ fill_to = Vector2(0.5, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7jktm"]
 
+[sub_resource type="Animation" id="Animation_tipki"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.389, 0.389)]
+}
+
+[sub_resource type="Animation" id="Animation_85g3d"]
+resource_name = "jump"
+length = 2.0666666
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.29875436, 0.29875445), Vector2(0.389, 0.389), Vector2(0.189, 0.189), Vector2(-0.149, -0.149)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_choun"]
+_data = {
+&"RESET": SubResource("Animation_tipki"),
+&"jump": SubResource("Animation_85g3d")
+}
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tipki"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o6xl0"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_o6xl0"]
+[sub_resource type="LabelSettings" id="LabelSettings_tipki"]
 font_size = 28
 font_color = Color(1, 0.827451, 0.007843138, 1)
 outline_size = 8
@@ -105,12 +144,16 @@ grow_horizontal = 2
 texture = ExtResource("6_tefeu")
 stretch_mode = 5
 
-[node name="Sprite2D" type="Sprite2D" parent="logo" unique_id=1016972910]
+[node name="jump_sprite" type="Sprite2D" parent="logo" unique_id=1016972910]
 modulate = Color(0.85490197, 0.003921569, 0.18431373, 1)
 position = Vector2(388.00003, 287)
 rotation = -0.32077163
-scale = Vector2(0.29875436, 0.29875445)
+scale = Vector2(0.389, 0.389)
 texture = ExtResource("7_o6xl0")
+
+[node name="anim" type="AnimationPlayer" parent="logo/jump_sprite" unique_id=1286121443]
+libraries/ = SubResource("AnimationLibrary_choun")
+autoplay = &"jump"
 
 [node name="mid" type="PanelContainer" parent="." unique_id=1752801673]
 layout_mode = 1
@@ -162,28 +205,48 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 38
 text = "Quit"
 
-[node name="settings" parent="mid/vb/tabs" unique_id=407811769 instance=ExtResource("8_tipki")]
+[node name="vb_settings" type="VBoxContainer" parent="mid/vb/tabs" unique_id=1892621923]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 1
 
-[node name="credits" type="PanelContainer" parent="mid/vb/tabs" unique_id=389576715]
+[node name="lb_title" type="Label" parent="mid/vb/tabs/vb_settings" unique_id=725581605]
+layout_mode = 2
+text = "Settings"
+label_settings = SubResource("LabelSettings_tipki")
+horizontal_alignment = 1
+
+[node name="sep" type="HSeparator" parent="mid/vb/tabs/vb_settings" unique_id=1869011538]
+layout_mode = 2
+
+[node name="settings" parent="mid/vb/tabs/vb_settings" unique_id=407811769 instance=ExtResource("8_tipki")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="vb_credits" type="VBoxContainer" parent="mid/vb/tabs" unique_id=461081231]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="vb" type="VBoxContainer" parent="mid/vb/tabs/credits" unique_id=2063765716]
-layout_mode = 2
-
-[node name="lb_title" type="Label" parent="mid/vb/tabs/credits/vb" unique_id=601073038]
+[node name="lb_title" type="Label" parent="mid/vb/tabs/vb_credits" unique_id=138443646]
 layout_mode = 2
 text = "Credits"
-label_settings = SubResource("LabelSettings_o6xl0")
+label_settings = SubResource("LabelSettings_tipki")
+horizontal_alignment = 1
 
-[node name="sep" type="HSeparator" parent="mid/vb/tabs/credits/vb" unique_id=248862355]
+[node name="sep" type="HSeparator" parent="mid/vb/tabs/vb_credits" unique_id=690593489]
+layout_mode = 2
+
+[node name="credits" type="PanelContainer" parent="mid/vb/tabs/vb_credits" unique_id=389576715]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="vb" type="VBoxContainer" parent="mid/vb/tabs/vb_credits/credits" unique_id=2063765716]
 layout_mode = 2
 
 [node name="btn_back" type="Button" parent="mid/vb" unique_id=1361891830]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

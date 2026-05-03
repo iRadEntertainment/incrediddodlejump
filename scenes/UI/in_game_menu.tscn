@@ -3,6 +3,18 @@
 [ext_resource type="Script" uid="uid://tajgnb6g1vq2" path="res://scenes/UI/in_game_menu.gd" id="1_co4s4"]
 [ext_resource type="PackedScene" uid="uid://coc72ha2ks3xp" path="res://scenes/UI/settings.tscn" id="2_kvtxh"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kvtxh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kvtxh"]
+font_size = 28
+font_color = Color(1, 0.827451, 0.007843138, 1)
+outline_size = 8
+outline_color = Color(0.79607844, 0.3254902, 0.1254902, 1)
+shadow_size = 8
+shadow_color = Color(0, 0, 0, 0.36078432)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i3wa6"]
+
 [node name="in_game_menu" type="Control" unique_id=1680935391]
 layout_mode = 3
 anchors_preset = 15
@@ -34,22 +46,54 @@ color = Color(0.7176471, 0.85882354, 0.6666667, 1)
 [node name="vb" type="VBoxContainer" parent="pnl" unique_id=640604041]
 layout_mode = 2
 
-[node name="settings" parent="pnl/vb" unique_id=407811769 instance=ExtResource("2_kvtxh")]
+[node name="tabs" type="TabContainer" parent="pnl/vb" unique_id=923335751]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_kvtxh")
+current_tab = 1
+tabs_visible = false
+
+[node name="vb_buttons" type="VBoxContainer" parent="pnl/vb/tabs" unique_id=252970342]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="lb_title" type="Label" parent="pnl/vb/tabs/vb_buttons" unique_id=769857184]
+layout_mode = 2
+text = "Game paused"
+label_settings = SubResource("LabelSettings_kvtxh")
+horizontal_alignment = 1
+
+[node name="sep" type="HSeparator" parent="pnl/vb/tabs/vb_buttons" unique_id=1252167801]
 layout_mode = 2
 
-[node name="btn_title" type="Button" parent="pnl/vb" unique_id=427034985]
+[node name="btn_settings" type="Button" parent="pnl/vb/tabs/vb_buttons" unique_id=1722940864]
+layout_mode = 2
+text = "Settings"
+
+[node name="btn_title" type="Button" parent="pnl/vb/tabs/vb_buttons" unique_id=427034985]
 layout_mode = 2
 text = "Quit to Title"
 
-[node name="btn_restart" type="Button" parent="pnl/vb" unique_id=258777132]
+[node name="btn_restart" type="Button" parent="pnl/vb/tabs/vb_buttons" unique_id=258777132]
 layout_mode = 2
 text = "Restart"
 
-[node name="btn_quit" type="Button" parent="pnl/vb" unique_id=499642157]
-unique_name_in_owner = true
+[node name="vb_settings" type="VBoxContainer" parent="pnl/vb/tabs" unique_id=1547875218]
 layout_mode = 2
-text = "Quit"
+metadata/_tab_index = 1
 
-[connection signal="pressed" from="pnl/vb/btn_title" to="." method="_on_btn_title_pressed"]
-[connection signal="pressed" from="pnl/vb/btn_restart" to="." method="_on_btn_restart_pressed"]
-[connection signal="pressed" from="pnl/vb/btn_quit" to="." method="_on_btn_quit_pressed"]
+[node name="settings" parent="pnl/vb/tabs/vb_settings" unique_id=407811769 instance=ExtResource("2_kvtxh")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_i3wa6")
+
+[node name="btn_back" type="Button" parent="pnl/vb/tabs/vb_settings" unique_id=680601148]
+layout_mode = 2
+size_flags_vertical = 10
+text = "back"
+
+[connection signal="pressed" from="pnl/vb/tabs/vb_buttons/btn_settings" to="." method="_on_btn_settings_pressed"]
+[connection signal="pressed" from="pnl/vb/tabs/vb_buttons/btn_title" to="." method="_on_btn_title_pressed"]
+[connection signal="pressed" from="pnl/vb/tabs/vb_buttons/btn_restart" to="." method="_on_btn_restart_pressed"]
+[connection signal="pressed" from="pnl/vb/tabs/vb_settings/btn_back" to="." method="_on_btn_back_pressed"]
